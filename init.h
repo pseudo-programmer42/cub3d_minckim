@@ -1,10 +1,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdlib.h>
-#include <stdio.h>
 #include "./libft/libft.h"
 #include "./get_next_line/get_next_line.h"
-#include "./ft_printf/get_next_line.h"
 #define TRUE 1
 #define FALSE 0
 
@@ -12,12 +10,6 @@ typedef struct	s_point{
 	int			x;
 	int			y;
 }				t_point;
-
-typedef struct	s_point_3d{
-	int			x;
-	int			y;
-	int			z;
-}				t_point_3d;
 
 typedef struct	s_info_data{
 	int			floor_color;
