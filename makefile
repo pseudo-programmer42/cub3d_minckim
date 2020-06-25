@@ -10,10 +10,10 @@ FLAG = -Wall -Wextra -Werror
 LIBFT_DIR = ./libft/
 LIBFT = libft.a
 
-LIBGNL_DIR = ./get_next_line/
+LIBGNL_DIR = $(LIBFT_DIR)get_next_line/
 LIBGNL = libgnl.a
 
-LIBFTPRINTF_DIR = ./ft_printf/
+LIBFTPRINTF_DIR = $(LIBFT_DIR)ft_printf/
 LIBFTPRINTF = libftprintf.a
 
 #source files
@@ -35,31 +35,21 @@ $(OBJS):%.o : %.c
 
 lib : library
 
-library : $(LIBFT) $(LIBGNL) $(LIBFTPRINTF)
+library : $(LIBFT)
 
 $(LIBFT) :
 	make -C $(LIBFT_DIR)
 	mv $(LIBFT_DIR)$(LIBFT) .
 
-$(LIBGNL) :
-	make -C $(LIBGNL_DIR)
-	mv $(LIBGNL_DIR)$(LIBGNL) .
-
-$(LIBFTPRINTF) :
-	make -C $(LIBFTPRINTF_DIR)
-	mv $(LIBFTPRINTF_DIR)$(LIBFTPRINTF) .
-
 clean :
-	rm -rf $(OBJS) $(LIBFT) $(LIBGNL) $(LIBFTPRINTF) $(MMS) $(OPENGL)
+	rm -rf $(OBJS) $(LIBFT) $(MMS) $(OPENGL)
 	make clean -C $(LIBFT_DIR)
-	make clean -C $(LIBGNL_DIR)
-	make clean -C $(LIBFTPRINTF_DIR)
+
 
 fclean :
-	rm -rf $(OBJS) $(LIBFT) $(LIBGNL) $(LIBFTPRINTF) $(MMS) $(OPENGL) $(NAME)
+	rm -rf $(OBJS) $(LIBFT) $(MMS) $(OPENGL) $(NAME)
 	make clean -C $(LIBFT_DIR)
-	make clean -C $(LIBGNL_DIR)
-	make clean -C $(LIBFTPRINTF_DIR)
+
 
 re : fclean $(NAME)
 

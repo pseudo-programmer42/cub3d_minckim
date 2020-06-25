@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 19:50:23 by minckim           #+#    #+#             */
-/*   Updated: 2020/04/07 22:41:13 by minckim          ###   ########.fr       */
+/*   Updated: 2020/06/24 16:06:10 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <stddef.h>
-
+# include "get_next_line/get_next_line.h"
+# include "ft_printf/ft_printf.h"
 typedef struct		s_list
 {
 	void			*content;

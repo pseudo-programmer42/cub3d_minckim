@@ -48,6 +48,8 @@ t_point	make_point(int x, int y)
 
 int		is_info_line(char **line_segment)
 {
+	if (!(*line_segment))
+		return (FALSE);
 	if (ft_strncmp(line_segment[0], "R", 1) == 0)
 		return (TRUE);
 	if (ft_strncmp(line_segment[0], "NO", 2) == 0)
@@ -76,7 +78,7 @@ int		is_map_line(char *line)
 		return (FALSE);
 	while (*line)
 	{
-		if (ft_strchr(map_entity, *line) == 0)
+		if (ft_strchr(map_entity, *line++) == 0)
 			return (FALSE);
 	}
 	return (TRUE);
@@ -86,7 +88,8 @@ void	init_resolution(char **line_segment, t_point *resolution)
 {
 	int	x;
 	int	y;
-	ft_printf("loading resolution\n");
+
+	ft_printf("loading %s\n", line_segment[0]);
 	if (!line_segment[1])
 		exit_print("Missing factor: screen resolution x");
 	if (!line_segment[2])
@@ -138,15 +141,19 @@ void	parse_map_line(char *line, t_list *map_data)
 {
 	t_list	*this_line;
 
-	ft_printf("setting map");
+	ft_printf("setting map\n");
 	this_line = ft_lstnew(ft_strdup(line));
 	ft_lstadd_back(&map_data, this_line);
 }
 
 
-void	set_map(t_list **map)
+void	set_map(t_list *map)
 {
-	ft_putstr_fd("set_map\n", 1);
+	while (map)
+	{
+		ft_printf("%s\n", map->content);
+		map = map->next;
+	}
 }
 
 int		init(char *path, t_info_data *info_data, t_list *map_data)
@@ -165,17 +172,15 @@ int		init(char *path, t_info_data *info_data, t_list *map_data)
 			parse_info_line(line_segment, info_data);
 		else if (is_map_line(line) == TRUE)
 			parse_map_line(line, map_data);
-		else
-			ft_printf("blank\n");
-		free(line);
 		i = 0;
 		while (line_segment[i])
 			free(line_segment[i++]);
 		free(line_segment);
+		free(line);
 	}
 	if (check_err < 0)
 		exit_print("loading failed while reading .cub file");
-	set_map(&map_data);
+	set_map(map_data);
 	close(fd);
 	return (0);
 }
@@ -186,6 +191,6 @@ int		main(int argc, char **argv)
 	t_info_data	info_data;
 
 	ft_memset(&info_data, 0, sizeof(t_info_data));
-	ft_memset(&info_data, 0, sizeof(t_info_data));
+	ft_memset(&map_data, 0, sizeof(t_info_data));
 	init(argv[1], &info_data, &map_data);
 }

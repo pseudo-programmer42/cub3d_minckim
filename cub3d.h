@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "./libft/libft.h"
-#include "./get_next_line/get_next_line.h"
-#include "./ft_printf/get_next_line.h"
 #define TRUE 1
 #define FALSE 0
 
