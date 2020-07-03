@@ -1,13 +1,10 @@
-S ./textures/pillar.xpm
 R 900 600
 
-H ./textures/health.xpm
-
-
-NO ./textures/north.xpm
-SO ./textures/south.xpm
-WE ./textures/west.xpm
-EA ./textures/east.xpm
+S ./super.bmp
+NO ./super.bmp
+SO ./super.bmp
+WE ./super.bmp
+EA ./super.bmp
 
 
 F 220,100,0

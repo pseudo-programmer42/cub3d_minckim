@@ -1,162 +1,44 @@
-/*pseudo code
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/29 16:57:26 by minckim           #+#    #+#             */
+/*   Updated: 2020/07/01 00:51:06 by minckim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-init()
-	info_data
-	map_data
-	runtime_data
-
-	while (get_next_line(fd, &line))
-		line_segment = split(line, ' ')
-		if is_info_data(line) == true
-			parse_info_data(line, &info_data)
-				if strcmp(line_segment[0] == "R") == 0
-					init_resolution()...
-				else if ...
-					...
-				else if ...
-					...
-		else if is_map_data(line) == true
-			parse_map_data((line, &init_data))
-				get_map_size()
-					t_list	*map;
-					...
-				init_map()
-		free(line_segment);	//free all
-		free(line)
-
-
-
-*/
 #include "cub3d.h"
 
-void	exit_print(char *err_massage)
+void	exit_message(char *err_massage)
 {
-	ft_putstr_fd("Error: ", 2);
-	ft_putstr_fd(err_massage, 2);
-	ft_putstr_fd("\n", 2);
+	ft_printf("Error\n-%s\n", err_massage);
 	exit(1);
 }
 
-t_point	make_point(int x, int y)
+void	check_err(t_info_data *info_data)
 {
-	t_point	point;
-
-	point.x = x;
-	point.y = y;
-	return (point);
+	if ((info_data->checklist & NORTH_TEXTURE) == 0)
+		exit_message("init check: north texture path is missing.");
+	if ((info_data->checklist & SOUTH_TEXTURE) == 0)
+		exit_message("init check: south texture path is missing.");
+	if ((info_data->checklist & EAST_TEXTURE) == 0)
+		exit_message("init check: east texture path is missing.");
+	if ((info_data->checklist & WEST_TEXTURE) == 0)
+		exit_message("init check: west texture path is missing.");
+	if ((info_data->checklist & SPRITE_TEXTURE) == 0)
+		exit_message("init check: sprite texture path is missing.");
+	if ((info_data->checklist & FLOOR_COLOR) == 0)
+		exit_message("init check: floor color is not defined.");
+	if ((info_data->checklist & CEILLING_COLOR) == 0)
+		exit_message("init check: floor color is not defined.");
+	if ((info_data->checklist & RESOLUTION) == 0)
+		exit_message("init check: resolution data is missing.");
 }
 
-int		is_info_line(char **line_segment)
-{
-	if (!(*line_segment))
-		return (FALSE);
-	if (ft_strncmp(line_segment[0], "R", 1) == 0)
-		return (TRUE);
-	if (ft_strncmp(line_segment[0], "NO", 2) == 0)
-		return (TRUE);
-	if (ft_strncmp(line_segment[0], "SO", 2) == 0)
-		return (TRUE);
-	if (ft_strncmp(line_segment[0], "EA", 2) == 0)
-		return (TRUE);
-	if (ft_strncmp(line_segment[0], "WE", 2) == 0)
-		return (TRUE);
-	if (ft_strncmp(line_segment[0], "S", 1) == 0)
-		return (TRUE);
-	if (ft_strncmp(line_segment[0], "C", 1) == 0)
-		return (TRUE);
-	if (ft_strncmp(line_segment[0], "F", 1) == 0)
-		return (TRUE);
-	return (FALSE);
-}
-
-int		is_map_line(char *line)
-{
-	char	map_entity[6];
-
-	ft_strlcpy(map_entity, "012N ", 5);
-	if (*line == 0)
-		return (FALSE);
-	while (*line)
-	{
-		if (ft_strchr(map_entity, *line++) == 0)
-			return (FALSE);
-	}
-	return (TRUE);
-}
-
-void	init_resolution(char **line_segment, t_point *resolution)
-{
-	int	x;
-	int	y;
-
-	ft_printf("loading %s\n", line_segment[0]);
-	if (!line_segment[1])
-		exit_print("Missing factor: screen resolution x");
-	if (!line_segment[2])
-		exit_print("Missing factor: screen resolution y");
-	x = ft_atoi(line_segment[1]);
-	y = ft_atoi(line_segment[2]);
-	if (x == 0 || y == 0)
-		exit_print("Wrong factor: Given screen size is 0");
-	*resolution = make_point(x, y);
-}
-
-void	init_color(char **line_segment, int *color)
-{
-	ft_printf("loading %s\n", line_segment[0]);
-	line_segment = line_segment + 0;
-}
-
-void	init_path(char **line_segment, char *path)
-{
-	int	len;
-
-	ft_printf("loading %s\n", line_segment[0]);
-	len = ft_strlcpy(path, line_segment[1], 500);
-	if (len == 0)
-		exit_print("Missing factor: path_empty");
-}
-
-void	parse_info_line(char **line_segment, t_info_data *info_data)
-{
-	if (ft_strncmp(line_segment[0], "R", 1) == 0)
-		init_resolution(line_segment, &(info_data->resolution));
-	else if (ft_strncmp(line_segment[0], "NO", 2) == 0)
-		init_path(line_segment, info_data->north_texture);
-	else if (ft_strncmp(line_segment[0], "SO", 2) == 0)
-		init_path(line_segment, info_data->south_texture);
-	else if (ft_strncmp(line_segment[0], "EA", 2) == 0)
-		init_path(line_segment, info_data->east_texture);
-	else if (ft_strncmp(line_segment[0], "WE", 2) == 0)
-		init_path(line_segment, info_data->west_texture);
-	else if (ft_strncmp(line_segment[0], "S", 1) == 0)
-		init_path(line_segment, info_data->sprite_texture);
-	else if (ft_strncmp(line_segment[0], "F", 1) == 0)
-		init_color(line_segment, &(info_data->floor_color));
-	else if (ft_strncmp(line_segment[0], "C", 1) == 0)
-		init_color(line_segment, &(info_data->ceilling_color));
-}
-
-void	parse_map_line(char *line, t_list *map_data)
-{
-	t_list	*this_line;
-
-	ft_printf("setting map\n");
-	this_line = ft_lstnew(ft_strdup(line));
-	ft_lstadd_back(&map_data, this_line);
-}
-
-
-void	set_map(t_list *map)
-{
-	while (map)
-	{
-		ft_printf("%s\n", map->content);
-		map = map->next;
-	}
-}
-
-int		init(char *path, t_info_data *info_data, t_list *map_data)
+int		parse(char *path, t_info_data *info_data, t_list **map_data)
 {
 	char	**line_segment;
 	char	*line;
@@ -179,18 +61,52 @@ int		init(char *path, t_info_data *info_data, t_list *map_data)
 		free(line);
 	}
 	if (check_err < 0)
-		exit_print("loading failed while reading .cub file");
-	set_map(map_data);
+		exit_message("loading failed");
 	close(fd);
 	return (0);
 }
 
-int		main(int argc, char **argv)
+void	save_bitmap(void)
 {
-	t_list		map_data;
+	ft_printf("saving bitmap image...\n");
+}
+
+void	check_arg(int argc, char **argv)
+{
+	if (argc == 1)
+		exit_message("Map data empty");
+	if (ft_strncmp(argv[1] + (ft_strlen(argv[1]) - 4), ".cub", 4))
+		exit_message("Type of input file is wrong.");
+	if (argc == 3)
+		if (ft_strncmp(argv[2], "--save", ft_strlen("--save")))
+			exit_message("wrong input\n");
+	if (argc > 3)
+		exit_message("Too many input");
+}
+
+void	init_image_n_color(t_info_data *info_data, t_runtime_data *runtime_data)
+{
+	runtime_data->wall_texture[0] = ft_bitmap(info_data->east_texture);
+	runtime_data->wall_texture[1] = ft_bitmap(info_data->north_texture);
+	runtime_data->wall_texture[2] = ft_bitmap(info_data->west_texture);
+	runtime_data->wall_texture[3] = ft_bitmap(info_data->south_texture);
+	runtime_data->sprite_texture = ft_bitmap(info_data->sprite_texture);
+	runtime_data->floor_color = info_data->floor_color;
+	runtime_data->ceilling_color = info_data->ceilling_color;
+}
+
+int	init(int argc, char **argv, t_runtime_data *runtime_data)
+{
+	t_list		*map_data;
 	t_info_data	info_data;
 
+	ft_memset(&map_data, 0, sizeof(map_data));
 	ft_memset(&info_data, 0, sizeof(t_info_data));
-	ft_memset(&map_data, 0, sizeof(t_info_data));
-	init(argv[1], &info_data, &map_data);
+	check_arg(argc, argv);
+	parse(argv[1], &info_data, &map_data);
+	init_image_n_color(&info_data, runtime_data);
+	build_map(map_data, runtime_data);
+	if (argc == 3)
+		save_bitmap();
+	return (0);
 }

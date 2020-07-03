@@ -1,10 +1,22 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/06/29 16:58:52 by minckim           #+#    #+#              #
+#    Updated: 2020/07/02 04:59:49 by minckim          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 #output
 NAME = cub3d
 
 # compile option
 CC = gcc
-FLAG = -Wall -Wextra -Werror
-# NFLAG =
+# FLAG = -Wall -Wextra -Werror
+FLAG =
 
 #library
 LIBFT_DIR = ./libft/
@@ -17,7 +29,14 @@ LIBFTPRINTF_DIR = $(LIBFT_DIR)ft_printf/
 LIBFTPRINTF = libftprintf.a
 
 #source files
-SRCS = main.c
+SRCS_TEST = main_ex.c
+OBJS_TEST = $(SRCS_TEST:.c=.o)
+
+
+SRCS = \
+		main.c				init.c			parse_info.c\
+		parse_map.c			build_map.c		linear_algebra.c\
+		image_convertor.c	object.c		face.c\
 
 OBJS = $(SRCS:.c=.o)
 
@@ -25,10 +44,16 @@ OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
 
+test : $(OBJS_TEST) library
+	$(CC) $(FLAG) -o $(NAME) $(OBJS_TEST) \
+	-lm -L. -lft -I./includes -I./usr/include -lmlx \
+	-framework OpenGL -framework AppKit && ./$(NAME) map.cub
+
+
 $(NAME) : $(OBJS) library
 	$(CC) $(FLAG) -o $(NAME) $(OBJS) \
-	-lm -L. -lft -lgnl -lftprintf-I./includes -I./usr/include -lmlx \
-	-framework OpenGL -framework AppKit
+	-lm -L. -lft -I./includes -I./usr/include -lmlx \
+	-framework OpenGL -framework AppKit && ./$(NAME) map.cub
 
 $(OBJS):%.o : %.c
 	$(CC) $(FLAG) -c $*.c -o $@
@@ -42,12 +67,12 @@ $(LIBFT) :
 	mv $(LIBFT_DIR)$(LIBFT) .
 
 clean :
-	rm -rf $(OBJS) $(LIBFT) $(MMS) $(OPENGL)
+	rm -rf $(OBJS) $(LIBFT)
 	make clean -C $(LIBFT_DIR)
 
 
 fclean :
-	rm -rf $(OBJS) $(LIBFT) $(MMS) $(OPENGL) $(NAME)
+	rm -rf $(OBJS) $(LIBFT) $(NAME)
 	make clean -C $(LIBFT_DIR)
 
 
