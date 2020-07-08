@@ -6,7 +6,7 @@
 #    By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/29 16:58:52 by minckim           #+#    #+#              #
-#    Updated: 2020/07/02 04:59:49 by minckim          ###   ########.fr        #
+#    Updated: 2020/07/08 05:13:40 by minckim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,11 +32,27 @@ LIBFTPRINTF = libftprintf.a
 SRCS_TEST = main_ex.c
 OBJS_TEST = $(SRCS_TEST:.c=.o)
 
+BITMAP_DIR = ./bitmap/
+BITMAP_NAME = bitmap.c
 
-SRCS = \
-		main.c				init.c			parse_info.c\
-		parse_map.c			build_map.c		linear_algebra.c\
-		image_convertor.c	object.c		face.c\
+SCREEN_DIR = ./screen/
+SCREEN_NAME = init_screen.c
+
+LINEAR_DIR = ./linear_algebra/
+LINEAR_NAME = vec0.c		vec1.c		mat0.c		mat1.c		mat2.c\
+	linear_algebra_print.c
+
+GEOMETRY_DIR = ./geometry/
+GEOMETRY_NAME = face0.c		face1.c		entity.c	geometry_print.c
+
+SRCS_DIR = ./srcs/
+SRCS_NAME = main.c
+
+SRCS = $(addprefix $(SRCS_DIR),$(SRCS_NAME))\
+	$(addprefix $(SCREEN_DIR),$(SCREEN_NAME))\
+	$(addprefix $(LINEAR_DIR),$(LINEAR_NAME))\
+	$(addprefix $(BITMAP_DIR),$(BITMAP_NAME))\
+	$(addprefix $(GEOMETRY_DIR),$(GEOMETRY_NAME))
 
 OBJS = $(SRCS:.c=.o)
 
@@ -54,6 +70,11 @@ $(NAME) : $(OBJS) library
 	$(CC) $(FLAG) -o $(NAME) $(OBJS) \
 	-lm -L. -lft -I./includes -I./usr/include -lmlx \
 	-framework OpenGL -framework AppKit && ./$(NAME) map.cub
+
+linux: $(OBJS) library
+	$(CC) $(FLAG) -o $(NAME) $(OBJS) \
+	-lm -L. -lft \
+	&& ./$(NAME) map.cub
 
 $(OBJS):%.o : %.c
 	$(CC) $(FLAG) -c $*.c -o $@
