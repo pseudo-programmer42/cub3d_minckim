@@ -6,7 +6,7 @@
 #    By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/29 16:58:52 by minckim           #+#    #+#              #
-#    Updated: 2020/07/08 05:13:40 by minckim          ###   ########.fr        #
+#    Updated: 2020/07/10 22:01:05 by minckim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME = cub3d
 
 # compile option
-CC = gcc
+CC = gcc -O3
 # FLAG = -Wall -Wextra -Werror
 FLAG =
 
@@ -33,20 +33,39 @@ SRCS_TEST = main_ex.c
 OBJS_TEST = $(SRCS_TEST:.c=.o)
 
 BITMAP_DIR = ./bitmap/
-BITMAP_NAME = bitmap.c
+BITMAP_NAME = \
+	bitmap.c
 
 SCREEN_DIR = ./screen/
-SCREEN_NAME = init_screen.c
+SCREEN_NAME = \
+	init_screen.c\
+	face_print.c\
+	face_print_util.c
 
 LINEAR_DIR = ./linear_algebra/
-LINEAR_NAME = vec0.c		vec1.c		mat0.c		mat1.c		mat2.c\
+LINEAR_NAME = \
+	vec0.c\
+	vec1.c\
+	mat0.c\
+	mat1.c\
+	mat2.c\
 	linear_algebra_print.c
 
 GEOMETRY_DIR = ./geometry/
-GEOMETRY_NAME = face0.c		face1.c		entity.c	geometry_print.c
+GEOMETRY_NAME =\
+	face0.c\
+	face1.c\
+	entity.c\
+	geometry_print.c
 
 SRCS_DIR = ./srcs/
-SRCS_NAME = main.c
+SRCS_NAME =\
+	main.c\
+	init.c\
+	init_parse_line.c\
+	init_util.c\
+	init_check_map.c\
+	init_create_entity.c
 
 SRCS = $(addprefix $(SRCS_DIR),$(SRCS_NAME))\
 	$(addprefix $(SCREEN_DIR),$(SCREEN_NAME))\
@@ -60,6 +79,9 @@ OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
 
+norm :
+	norminette $(SRCS)
+
 test : $(OBJS_TEST) library
 	$(CC) $(FLAG) -o $(NAME) $(OBJS_TEST) \
 	-lm -L. -lft -I./includes -I./usr/include -lmlx \
@@ -69,7 +91,7 @@ test : $(OBJS_TEST) library
 $(NAME) : $(OBJS) library
 	$(CC) $(FLAG) -o $(NAME) $(OBJS) \
 	-lm -L. -lft -I./includes -I./usr/include -lmlx \
-	-framework OpenGL -framework AppKit && ./$(NAME) map.cub
+	-framework OpenGL -framework AppKit && ./$(NAME) map2.cub
 
 linux: $(OBJS) library
 	$(CC) $(FLAG) -o $(NAME) $(OBJS) \

@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 05:15:47 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/08 00:22:09 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/10 05:06:39 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ t_entity	entity_new(t_face *face, int type, int n)
 {
 	t_entity	r;
 
-	r.type = type;
 	r.n_face = n;
 	r.face = face;
 	r.h = 0;
@@ -29,12 +28,7 @@ t_entity	entity_copy(t_entity *e, t_vec *v)
 {
 	t_entity	r;
 
-	r.type = e->type;
-	r.n_face = e->n_face;
-	r.face = e->face;
-	r.h = e->h;
-	r.v = e->v;
-	r.origin = vec_new(0, 0, 0);
+	r = *e;
 	entity_move(&r, v);
 	return (r);
 }
@@ -44,7 +38,6 @@ t_entity	entity_deepcopy(t_entity *e, t_vec *v)
 	t_entity	r;
 	int			i;
 
-	r.type = e->type;
 	r.n_face = e->n_face;
 	r.face = (t_face*)malloc(sizeof(t_face) * r.n_face);
 	r.h = e->h;

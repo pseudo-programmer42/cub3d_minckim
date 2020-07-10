@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 04:24:21 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/08 04:44:21 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/09 00:54:01 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include "bitmap.h"
+#include "../libft/libft.h"
 
 int			bitmap_pixel_color(t_bitmap *img, int i, int j)
 {
@@ -25,27 +26,13 @@ int			bitmap_pixel_color(t_bitmap *img, int i, int j)
 	return ((*(int*)(&img->arr[idx])) & 0xffffff);
 }
 
-/*
-** void		print_bitmap_arr(t_bitmap *img)
-** {
-** 	for (int j = 0 ; j < img->height ; j++)
-** 	{
-** 		for (int i = 0 ; i < img->width ; i++)
-** 		{
-** 			printf("%.6x ", bitmap_pixel_color(img, i, j));
-** 		}
-** 		printf("\n");
-** 	}
-** }
-**
-** void		print_bitmap_info(t_bitmap *img, int option)
-** {
-** 	printf("x    : %5d\n", img->width);
-** 	printf("y    : %5d\n", img->height);
-** 	if (option)
-** 		print_bitmap_arr(img);
-** }
-*/
+// void		print_bitmap_info(t_bitmap *img, int option)
+// {
+// 	ft_printf("x    : %5d\n", img->width);
+// 	ft_printf("y    : %5d\n", img->height);
+// 	if (option)
+// 		print_bitmap_arr(img);
+// }
 
 int			parse_bitmap_size_info(char *buffer, t_bitmap *img)
 {
@@ -74,7 +61,7 @@ int			parse_bitmap_size_info(char *buffer, t_bitmap *img)
 	return (0);
 }
 
-t_bitmap	*ft_bitmap(char *path)
+t_bitmap	*bitmap_new(char *path)
 {
 	int			fd;
 	char		buffer[200];
@@ -99,6 +86,25 @@ t_bitmap	*ft_bitmap(char *path)
 	close(fd);
 	return (img);
 }
+
+void	bitmap_del(t_bitmap *b)
+{
+	free(b->arr);
+	free(b);
+	b = 0;
+}
+
+// void		print_bitmap_arr(t_bitmap *img)
+// {
+// 	for (int j = 0 ; j < img->height ; j++)
+// 	{
+// 		for (int i = 0 ; i < img->width ; i++)
+// 		{
+// 			ft_printf("%.6x ", bitmap_pixel_color(img, i, j));
+// 		}
+// 		ft_printf("\n");
+// 	}
+// }
 
 /*
 ** int	main(void)

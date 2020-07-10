@@ -4,6 +4,7 @@
 # define RECTANGLE 1
 # include "../linear_algebra/linear_algebra.h"
 # define DEF_COLOR 0x00ff0000
+
 /*
 ** face type:
 **	0 : triangle
@@ -26,7 +27,6 @@ typedef struct		s_face{
 **	2 : sprite
 */
 typedef struct		s_entity{
-	int				type;
 	int				n_face;
 	t_vec			origin;
 	t_real			h;
@@ -34,12 +34,13 @@ typedef struct		s_entity{
 	t_face			*face;
 }					t_entity;
 
-t_face				face_new(t_vec a, t_vec b, t_vec c, int color);
-t_face				face_copy(t_face *f);
+t_face				face_new(t_vec *a, t_vec *b, t_vec *c, int color);
+t_face				face_copy(t_face *f, t_vec *v);
 t_face				*face_move(t_face *f, t_vec *v);
 t_face				*face_rot(t_face *f, t_vec *center, t_real h, t_real v);
 t_face				*face_rot_rc(t_face *f, t_vec *center, t_real h, t_real v);
 
+t_entity	entity_new(t_face *face, int type, int n);
 t_entity	*entity_move(t_entity *e, t_vec *v);
 t_entity	*entity_rot(t_entity *e, t_real h, t_real v);
 t_entity	entity_deepcopy(t_entity *e, t_vec *v);

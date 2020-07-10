@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 05:02:23 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/07 05:02:54 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/09 00:53:48 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct	s_bitmap{
 	char		*arr;
 }				t_bitmap;
 
-t_bitmap		*ft_bitmap();
+t_bitmap		*bitmap_new();
 int				bitmap_pixel_color(t_bitmap *img, int i, int j);
+void			bitmap_del(t_bitmap *b);
 #endif

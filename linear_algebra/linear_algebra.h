@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 04:36:56 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/08 03:00:58 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/10 21:27:24 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define LINEAR_ALGEBRA_H
 # include <math.h>
 
-typedef double	t_real;
+
+typedef float	t_real;
 
 typedef struct	s_vec{
 	t_real		x;

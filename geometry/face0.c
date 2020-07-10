@@ -6,36 +6,34 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 20:38:43 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/08 03:06:59 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/10 04:28:50 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "geometry.h"
 
-t_face	face_new(t_vec a, t_vec b, t_vec c, int type)
+t_face	face_new(t_vec *a, t_vec *b, t_vec *c, int type)
 {
 	t_face	r;
 
-	r.a = a;
-	r.b = b;
-	r.c = c;
+	r.a = *a;
+	r.b = *b;
+	r.c = *c;
 	r.color = DEF_COLOR;
 	r.img = 0;
 	r.type = type;
 	return (r);
 }
 
-t_face	face_copy(t_face *f)
+t_face	face_copy(t_face *f, t_vec *v)
 {
 	t_face		r;
 	static int	size_face = sizeof(t_face);
 
-	r.type = f->type;
-	r.color = f->color;
-	r.img = f->img;
-	r.a = f->a;
-	r.b = f->b;
-	r.c = f->c;
+	r = *f;
+	vec_add(&r.a, v);
+	vec_add(&r.b, v);
+	vec_add(&r.c, v);
 	return (r);
 }
 

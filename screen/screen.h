@@ -42,4 +42,10 @@ t_screen		init_screen(int rx, int ry, t_real angle);
 void			mlx_pixel(t_img *img, int x, int y, int color);
 t_pixel			**pixel_init(t_screen *screen);
 void			screen_face(t_screen *s, t_face *f);
+int				screen_point(t_screen *s, t_vec *v, t_real *point);
+int				screen_face_point(t_screen *s, t_face *f, t_real *point);
+void			set_boundary(int *boundary, t_real *point);
+int				set_boundary_f(t_screen *s, t_face *f, int *boundary, t_real *point);
+void			screen_entity(t_screen *s, t_entity *e);
+void			refresh_screen(t_screen *s);
 #endif
