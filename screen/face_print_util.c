@@ -6,13 +6,28 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 18:09:08 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/10 19:58:34 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/13 03:33:52 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "screen.h"
 
-int		screen_point(t_screen *s, t_vec *v, t_real *point)
+// t_real		screen_edge_x(t_real e, t_real d, t_vec *p, t_vec *q)
+// {
+// 	t_vec	u;
+// 	t_real	det;
+// 	t_real	t[3];
+
+// 	u = *p;
+// 	vec_sub(u, q);
+// 	det = -u.x * e + u.y * d;
+// 	t[0] = (e * q->x - d * q->y) / det;
+// 	t[1] = -(u.y * q->x  u.x * q->y) / det;
+// 	return (q->z + t[0] * u.z) / t[1];
+// }
+
+
+int		screen_point(t_screen *s, t_vec *restrict v, t_real *point)
 {
 	if (v->x < 0)
 	{
@@ -56,6 +71,8 @@ void		set_boundary(int *boundary, t_real *point)
 	boundary[1] = boundary[1] > point[1] ? point[1] : boundary[1];
 	boundary[2] = boundary[2] < point[0] ? point[0] : boundary[2];
 	boundary[3] = boundary[3] < point[1] ? point[1] : boundary[3];
+	boundary[2]++;
+	boundary[3]++;
 }
 
 int			set_boundary_f(t_screen *s, t_face *f, int *boundary, t_real *point)

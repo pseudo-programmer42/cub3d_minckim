@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 04:37:29 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/07 04:54:19 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/13 05:15:34 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ t_vec	*vec_add(t_vec *a, t_vec *b)
 
 t_vec	*vec_sub(t_vec *a, t_vec *b)
 {
-	t_vec	r;
-
 	a->x -= b->x;
 	a->y -= b->y;
 	a->z -= b->z;

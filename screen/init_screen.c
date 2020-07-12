@@ -19,6 +19,7 @@ t_screen	init_screen(int rx, int ry, t_real angle)
 		&(img->line_length), &(img->endian));
 	screen.tan_camera_angle_2 = tan(angle / 2) * 2;
 	screen.distance = screen.rx / screen.tan_camera_angle_2;
+	screen.cos_cam = cos(angle / 2);
 	screen.pixel = pixel_init(&screen);
 	return (screen);
 }
@@ -39,8 +40,9 @@ t_pixel		**pixel_init(t_screen *s)
 		while (++j < s->ry)
 		{
 			tmp = &(pixel[i][j]);
-			tmp->distance = -BIG_REAL;
+			tmp->distance = BIG_REAL;
 			tmp->ray = vec_new(s->distance, s->rx / 2 - i, s->ry / 2 - j);
+			vec_unit(&tmp->ray);
 			tmp->color = s->img.addr + (j * s->img.line_length + i * (s->img.bits_per_pixel / 8));
 		}
 	}
@@ -69,7 +71,7 @@ void		refresh_screen(t_screen *s)
 		while (++j < s->ry)
 		{
 			*((p[i][j]).color) = 0;
-			(p[i][j]).distance = -BIG_REAL;
+			(p[i][j]).distance = BIG_REAL;
 		}
 	}
 }

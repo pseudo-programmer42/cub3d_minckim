@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 19:39:12 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/10 03:45:18 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/13 05:15:22 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,6 @@ int		check_col(char **map)
 
 int		check_map(char **map, t_gamedata *g_data)
 {
-	int		i;
-	int		j;
-
 	size_map(map, &g_data->size_x, &g_data->size_y);
 	if (check_row(map) && check_col(map))
 		return (1);

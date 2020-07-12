@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 20:00:12 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/10 20:49:15 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/13 06:48:49 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ t_entity	create_wall(t_bitmap **texture)
 	ft_memset(&wall, 0, sizeof(t_entity));
 	wall.n_face = 4;
 	wall.face = (t_face*)malloc(sizeof(t_face) * 4);
-	a = vec_new(WALL_WIDTH / 2, -WALL_WIDTH / 2, CEILLING_HEIGHT);
-	b = vec_new(WALL_WIDTH / 2, WALL_WIDTH / 2, CEILLING_HEIGHT);
-	c = vec_new(WALL_WIDTH / 2, -WALL_WIDTH / 2, 0);
+	a = vec_new(WALL_WIDTH / 2, -WALL_WIDTH / 2, 0);
+	b = vec_new(WALL_WIDTH / 2, WALL_WIDTH / 2, 0);
+	c = vec_new(WALL_WIDTH / 2, -WALL_WIDTH / 2, CEILLING_HEIGHT);
 	z = vec_new(0, 0, 0);
 	wall.face[0] = face_new(&a, &b, &c, RECTANGLE);
 	wall.face[1] = face_new(&a, &b, &c, RECTANGLE);
@@ -53,11 +53,12 @@ t_entity	create_floor_ceilling(t_bitmap **texture, int *color)
 	floor.n_face = 2;
 	floor.face = (t_face*)malloc(sizeof(t_face) * 2);
 	a = vec_new(-WALL_WIDTH / 2, -WALL_WIDTH / 2, 0);
-	b = vec_new(-WALL_WIDTH / 2, WALL_WIDTH / 2, 0);
-	c = vec_new(WALL_WIDTH / 2, -WALL_WIDTH / 2, 0);
-	z = vec_new(0, 0, CEILLING_HEIGHT);
+	b = vec_new(WALL_WIDTH / 2, -WALL_WIDTH / 2, 0);
+	c = vec_new(-WALL_WIDTH / 2, WALL_WIDTH / 2, 0);
+	z = vec_new(0, 0, CEILLING_HEIGHT / 2);
 	floor.face[0] = face_new(&a, &b, &c, RECTANGLE);
-	floor.face[1] = face_copy(floor.face, &z);
+	floor.face[1] = floor.face[0];
+	face_rot(floor.face + 1, &z, 0, M_PI);
 	if (BONUS)
 	{
 		floor.face[0].img = texture[TEXTURE_EAST];
@@ -81,9 +82,9 @@ t_entity	create_sprite(t_bitmap **texture)
 	ft_memset(&sprite, 0, sizeof(t_entity));
 	sprite.n_face = 1;
 	sprite.face = (t_face*)malloc(sizeof(t_face) * 1);
-	a = vec_new(0, -200, EYE_LEVEL);
-	b = vec_new(0, 200, EYE_LEVEL);
-	c = vec_new(0, -200, 0);
+	a = vec_new(0, -500, 0);
+	b = vec_new(0, 500, 0);
+	c = vec_new(0, -200, 2000);
 	sprite.face[0] = face_new(&a, &b, &c, RECTANGLE);
 	sprite.face[0].img = texture[TEXTURE_SPRITE];
 	return sprite;
@@ -103,6 +104,7 @@ void	copy_entities(char **map, t_gamedata *g_data)
 	int		j;
 	t_vec	v;
 
+	g_data->n_item = 0;
 	g_data->entity = (t_entity**)malloc(sizeof(t_entity*) * g_data->size_x);
 	i = -1;
 	while (++i < g_data->size_x)
@@ -112,14 +114,13 @@ void	copy_entities(char **map, t_gamedata *g_data)
 		while (++j < g_data->size_y)
 		{
 			v = vec_new(i * WALL_WIDTH, j * WALL_WIDTH, 0);
-			// vec_print(&v);
-			if (map[i][j] == '0' || ft_strchr("NEWS", map[i][j]))
+			if (map[i][j] == '0' || ft_strchr("NEWS2", map[i][j]))
 				g_data->entity[i][j] = entity_copy(&g_data->floor, &v);
-			else if (map[i][j] == '1')
+			if (map[i][j] == '1')
 				g_data->entity[i][j] = entity_copy(&g_data->wall, &v);
-			else if (map[i][j] == '2')
-				g_data->entity[i][j] = entity_copy(&g_data->sprite, &v);
-			else if (map[i][j] == ' ')
+			if (map[i][j] == '2')
+				g_data->item[g_data->n_item++] = entity_copy(&g_data->sprite, &v);
+			if (map[i][j] == ' ')
 				g_data->entity[i][j] = entity_copy(&g_data->non, &v);
 			if (ft_strchr("NEWS", map[i][j]))
 				g_data->player.origin = v;

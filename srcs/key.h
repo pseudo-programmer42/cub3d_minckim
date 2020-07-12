@@ -11,4 +11,5 @@
 # define KEY_A 0
 # define KEY_S 1
 # define KEY_D 2
+# define KEY_SHF 257
 #endif

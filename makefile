@@ -6,7 +6,7 @@
 #    By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/29 16:58:52 by minckim           #+#    #+#              #
-#    Updated: 2020/07/10 22:01:05 by minckim          ###   ########.fr        #
+#    Updated: 2020/07/13 05:19:17 by minckim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@
 NAME = cub3d
 
 # compile option
-CC = gcc -O3
-# FLAG = -Wall -Wextra -Werror
-FLAG =
+CC = gcc
+# FLAG = -Wall -Wextra -Werror -O3
+FLAG = -O3
 
 #library
 LIBFT_DIR = ./libft/
@@ -46,6 +46,7 @@ LINEAR_DIR = ./linear_algebra/
 LINEAR_NAME = \
 	vec0.c\
 	vec1.c\
+	vec2.c\
 	mat0.c\
 	mat1.c\
 	mat2.c\
@@ -67,13 +68,30 @@ SRCS_NAME =\
 	init_check_map.c\
 	init_create_entity.c
 
+SRCS_BONUS_DIR = ./srcs_bonus/
+SRCS_BONUS_NAME =\
+	main.c\
+	init.c\
+	init_parse_line.c\
+	init_util.c\
+	init_check_map.c\
+	init_create_entity.c
+
 SRCS = $(addprefix $(SRCS_DIR),$(SRCS_NAME))\
 	$(addprefix $(SCREEN_DIR),$(SCREEN_NAME))\
 	$(addprefix $(LINEAR_DIR),$(LINEAR_NAME))\
 	$(addprefix $(BITMAP_DIR),$(BITMAP_NAME))\
 	$(addprefix $(GEOMETRY_DIR),$(GEOMETRY_NAME))
 
+SRCS_BONUS = $(addprefix $(SRCS_BONUS_DIR),$(SRCS_BONUS_NAME))\
+	$(addprefix $(SCREEN_DIR),$(SCREEN_NAME))\
+	$(addprefix $(LINEAR_DIR),$(LINEAR_NAME))\
+	$(addprefix $(BITMAP_DIR),$(BITMAP_NAME))\
+	$(addprefix $(GEOMETRY_DIR),$(GEOMETRY_NAME))
+
 OBJS = $(SRCS:.c=.o)
+
+OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 #rules
 
@@ -89,6 +107,11 @@ test : $(OBJS_TEST) library
 
 
 $(NAME) : $(OBJS) library
+	$(CC) $(FLAG) -o $(NAME) $(OBJS) \
+	-lm -L. -lft -I./includes -I./usr/include -lmlx -lpthread \
+	-framework OpenGL -framework AppKit && ./$(NAME) map2.cub
+
+bonus : $(OBJS_BONUS) library
 	$(CC) $(FLAG) -o $(NAME) $(OBJS) \
 	-lm -L. -lft -I./includes -I./usr/include -lmlx \
 	-framework OpenGL -framework AppKit && ./$(NAME) map2.cub

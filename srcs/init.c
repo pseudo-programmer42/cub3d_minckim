@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 16:57:26 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/10 03:45:38 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/13 04:19:17 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ int		check_init_data(t_gamedata *g_data)
 		}
 	split_del(words);
 	return (1);
+}
+
+void	init_player(t_gamedata *g_data)
+{
+	g_data->player.run = 0;
 }
 
 
@@ -60,5 +65,5 @@ void	init_game_data(char *path, t_gamedata *g_data)
 	if (check_map(map_arr, g_data) == 0)
 		exit_message("%s", "Map must be closed.");
 	init_entity(g_data, map_arr);
-	g_data->player.origin.z = EYE_LEVEL;
+	init_player(g_data);
 }

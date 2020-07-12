@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 04:24:21 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/09 00:54:01 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/13 06:42:14 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,17 +94,17 @@ void	bitmap_del(t_bitmap *b)
 	b = 0;
 }
 
-// void		print_bitmap_arr(t_bitmap *img)
-// {
-// 	for (int j = 0 ; j < img->height ; j++)
-// 	{
-// 		for (int i = 0 ; i < img->width ; i++)
-// 		{
-// 			ft_printf("%.6x ", bitmap_pixel_color(img, i, j));
-// 		}
-// 		ft_printf("\n");
-// 	}
-// }
+void		print_bitmap_arr(t_bitmap *img)
+{
+	for (int j = 0 ; j < img->height ; j++)
+	{
+		for (int i = 0 ; i < img->width ; i++)
+		{
+			ft_printf("%.6x ", bitmap_pixel_color(img, i, j));
+		}
+		ft_printf("\n");
+	}
+}
 
 /*
 ** int	main(void)

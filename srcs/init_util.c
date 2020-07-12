@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 20:00:06 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/09 20:00:06 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/13 05:15:02 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	**lst_to_arr(t_list *lst)
 	{
 		*arr_tmp = (char*)malloc(sizeof(char) * (size_i + 1));
 		i = -1;
-		while (++i < ft_strlen(lst->content))
+		while (++i < (int)ft_strlen(lst->content))
 			(*arr_tmp)[i] = ((char*)(lst->content))[i];
 		while (i < size_i)
 			(*arr_tmp)[i++] = ' ';

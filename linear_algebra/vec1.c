@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 04:37:32 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/07 04:54:45 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/12 23:15:28 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,15 @@ t_vec	*vec_mul(t_vec *a, t_real b)
 	a->y *= b;
 	a->z *= b;
 	return (a);
+}
+
+t_vec	*vec_unit(t_vec *a)
+{
+	t_real	d;
+
+	d = sqrt(a->x * a->x + a->y * a->y + a->z * a->z);
+	a->x /= d;
+	a->y /= d;
+	a->z /= d;
+	return a;
 }

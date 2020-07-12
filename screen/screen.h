@@ -6,7 +6,7 @@
 # include "../geometry/geometry.h"
 # include "../libft/libft.h"
 # include <stdlib.h>
-# define BIG_REAL 1000000000
+# define BIG_REAL 100000000000
 # define CAMERA_ANGLE M_PI / 2
 
 typedef struct	s_img{
@@ -19,6 +19,7 @@ typedef struct	s_img{
 
 typedef struct	s_pixel{
 	t_real		distance;
+	t_real		distance2;
 	t_vec		ray;
 	int			*color;
 }				t_pixel;
@@ -35,6 +36,7 @@ typedef struct	s_screen{
 	t_real		v;
 	t_real		tan_camera_angle_2;
 	t_real		distance;
+	t_real		cos_cam;
 }				t_screen;
 
 
@@ -48,4 +50,5 @@ void			set_boundary(int *boundary, t_real *point);
 int				set_boundary_f(t_screen *s, t_face *f, int *boundary, t_real *point);
 void			screen_entity(t_screen *s, t_entity *e);
 void			refresh_screen(t_screen *s);
+void		screen_item(t_screen *s, t_entity *e);
 #endif

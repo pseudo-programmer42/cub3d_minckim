@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 20:38:43 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/10 04:28:50 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/13 05:38:12 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ t_face	face_new(t_vec *a, t_vec *b, t_vec *c, int type)
 	r.a = *a;
 	r.b = *b;
 	r.c = *c;
+	r.u = *b;
+	r.v = *c;
+	vec_sub(&r.u, a);
+	vec_sub(&r.v, a);
+	r.n = vec_cross(&r.u, &r.v);
+	vec_unit(&r.n);
 	r.color = DEF_COLOR;
 	r.img = 0;
 	r.type = type;
@@ -28,7 +34,6 @@ t_face	face_new(t_vec *a, t_vec *b, t_vec *c, int type)
 t_face	face_copy(t_face *f, t_vec *v)
 {
 	t_face		r;
-	static int	size_face = sizeof(t_face);
 
 	r = *f;
 	vec_add(&r.a, v);
@@ -59,6 +64,9 @@ t_face	*face_rot(t_face *f, t_vec *center, t_real h, t_real v)
 	vec_add(&(f->a), center);
 	vec_add(&(f->b), center);
 	vec_add(&(f->c), center);
+	mat_vec(&mat_r, &(f->u));
+	mat_vec(&mat_r, &(f->v));
+	mat_vec(&mat_r, &(f->n));
 	return (f);
 }
 
@@ -73,5 +81,8 @@ t_face	*face_rot_rc(t_face *f, t_vec *center, t_real h, t_real v)
 	mat_vec(&mat_r, &(f->a));
 	mat_vec(&mat_r, &(f->b));
 	mat_vec(&mat_r, &(f->c));
+	mat_vec(&mat_r, &(f->u));
+	mat_vec(&mat_r, &(f->v));
+	mat_vec(&mat_r, &(f->n));
 	return (f);
 }

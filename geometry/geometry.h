@@ -17,6 +17,9 @@ typedef struct		s_face{
 	t_vec			a;
 	t_vec			b;
 	t_vec			c;
+	t_vec			u;
+	t_vec			v;
+	t_vec			n;
 }					t_face;
 
 /*
@@ -40,7 +43,7 @@ t_face				*face_move(t_face *f, t_vec *v);
 t_face				*face_rot(t_face *f, t_vec *center, t_real h, t_real v);
 t_face				*face_rot_rc(t_face *f, t_vec *center, t_real h, t_real v);
 
-t_entity	entity_new(t_face *face, int type, int n);
+t_entity	entity_new(t_face *face, int n);
 t_entity	*entity_move(t_entity *e, t_vec *v);
 t_entity	*entity_rot(t_entity *e, t_real h, t_real v);
 t_entity	entity_deepcopy(t_entity *e, t_vec *v);

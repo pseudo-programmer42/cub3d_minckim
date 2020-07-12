@@ -1,4 +1,5 @@
 #include "../screen/screen.h"
+# include "../libft/libft.h"
 # define TEXTURE_SPECIFIER "EA NO WE SO F C S R"
 # define N_TEXTURE 8
 # define TYPE_FLOOR 0
@@ -17,18 +18,21 @@
 # define WALL_WIDTH 3000
 # define EYE_LEVEL 1700
 # define CUB_CAM_ANGLE M_PI_2
-# define ANGLE_UNIT M_PI / 180 * 15
-# define MOVE_UNIT 1000
+# define ANGLE_UNIT M_PI / 180 * 3
+# define MOVE_WALK 300
+# define MOVE_RUN 1000
 # include "key.h"
 
 typedef struct	s_player{
 	t_vec		origin;
 	t_real		h;
 	t_real		v;
+	int			run;
 }				t_player;
 
 typedef struct	s_gamedata{
 	int			n_entity;
+	int			n_item;
 	int			size_x;
 	int			size_y;
 	t_bitmap	*texture[N_TEXTURE];
@@ -38,6 +42,7 @@ typedef struct	s_gamedata{
 	t_entity	sprite;
 	t_entity	non;
 	t_entity	**entity;
+	t_entity	item[10];
 	t_player	player;
 	t_screen	screen;
 }				t_gamedata;

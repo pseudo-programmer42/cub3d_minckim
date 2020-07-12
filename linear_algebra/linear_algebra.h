@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 04:36:56 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/10 21:27:24 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/12 23:15:15 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,15 @@ t_vec			*vec_add(t_vec *a, t_vec *b);
 t_vec			*vec_sub(t_vec *a, t_vec *b);
 t_vec			*vec_inv(t_vec *a);
 t_vec			*vec_mul(t_vec *a, t_real b);
+t_vec			*vec_div(t_vec *a, t_real b);
 t_vec			*vec_rot(t_vec *a, t_real h, t_real v);
 t_vec			*vec_rot_rc(t_vec *a, t_real h, t_real v);
 t_vec			vec_cross(t_vec *a, t_vec *b);
+t_vec			*vec_unit(t_vec *a);
 t_real			vec_dot(t_vec *a, t_vec *b);
+
 void			vec_print(t_vec *a);
+
 /*
 ** ============================================================================
 ** matrix
@@ -65,4 +69,5 @@ t_mat			mat_rot(t_real h, t_real v);
 t_mat			mat_rot_rc(t_real h, t_real v);
 t_vec			*mat_vec(t_mat *m, t_vec *v);
 void			mat_print(t_mat *a);
+t_mat		*mat_inverse_det(t_mat *m, t_real *det);
 #endif

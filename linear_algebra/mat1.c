@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 04:37:14 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/07 04:56:46 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/11 07:02:56 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,33 @@ t_mat		*mat_inverse(t_mat *m)
 	m->i = r.i / det;
 	return (m);
 }
+
+t_mat		*mat_inverse_det(t_mat *m, t_real *det)
+{
+	t_mat	r;
+
+	r.a = m->e * m->i - m->f * m->h;
+	r.b = m->h * m->c - m->i * m->b;
+	r.c = m->b * m->f - m->c * m->e;
+	r.d = m->f * m->g - m->d * m->i;
+	r.e = m->i * m->a - m->g * m->c;
+	r.f = m->c * m->d - m->a * m->f;
+	r.g = m->d * m->h - m->e * m->g;
+	r.h = m->g * m->b - m->h * m->a;
+	r.i = m->a * m->e - m->b * m->d;
+	*det = m->a * r.a + m->d * r.b + m->g * r.c;
+	m->a = r.a;
+	m->b = r.b;
+	m->c = r.c;
+	m->d = r.d;
+	m->e = r.e;
+	m->f = r.f;
+	m->g = r.g;
+	m->h = r.h;
+	m->i = r.i;
+	return (m);
+}
+
 
 t_mat		mat_rot(t_real ah, t_real av)
 {
