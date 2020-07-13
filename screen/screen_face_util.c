@@ -1,31 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   face_print_util.c                                  :+:      :+:    :+:   */
+/*   screen_face_util.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 18:09:08 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/13 03:33:52 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/14 00:44:37 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "screen.h"
-
-// t_real		screen_edge_x(t_real e, t_real d, t_vec *p, t_vec *q)
-// {
-// 	t_vec	u;
-// 	t_real	det;
-// 	t_real	t[3];
-
-// 	u = *p;
-// 	vec_sub(u, q);
-// 	det = -u.x * e + u.y * d;
-// 	t[0] = (e * q->x - d * q->y) / det;
-// 	t[1] = -(u.y * q->x  u.x * q->y) / det;
-// 	return (q->z + t[0] * u.z) / t[1];
-// }
-
 
 int		screen_point(t_screen *s, t_vec *restrict v, t_real *point)
 {
@@ -65,7 +50,7 @@ int		screen_face_point(t_screen *s, t_face *f, t_real *point)
 		return (1);
 }
 
-void		set_boundary(int *boundary, t_real *point)
+void	set_boundary(int *boundary, t_real *point)
 {
 	boundary[0] = boundary[0] > point[0] ? point[0] : boundary[0];
 	boundary[1] = boundary[1] > point[1] ? point[1] : boundary[1];
@@ -75,7 +60,7 @@ void		set_boundary(int *boundary, t_real *point)
 	boundary[3]++;
 }
 
-int			set_boundary_f(t_screen *s, t_face *f, int *boundary, t_real *point)
+int		set_boundary_f(t_screen *s, t_face *f, int *boundary, t_real *point)
 {
 	boundary[0] = s->rx;
 	boundary[1] = s->ry;
@@ -83,7 +68,7 @@ int			set_boundary_f(t_screen *s, t_face *f, int *boundary, t_real *point)
 	boundary[3] = 0;
 	if (screen_face_point(s, f, point) == 0)
 	{
-		return 0;
+		return (0);
 	}
 	set_boundary(boundary, point);
 	set_boundary(boundary, point + 2);

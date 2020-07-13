@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   geometry_print.c                                   :+:      :+:    :+:   */
+/*   tmp_code.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/14 00:06:58 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/14 00:06:59 by minckim          ###   ########.fr       */
+/*   Created: 2020/07/14 00:11:55 by minckim           #+#    #+#             */
+/*   Updated: 2020/07/14 00:43:00 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "geometry.h"
-#include "../libft/libft.h"
+#include "screen.h"
 
-void	face_print(t_face *f)
-{
-	if (f->type == TRIANGLE)
-		ft_printf("%10s", "Triangle\n");
-	else if (f->type == RECTANGLE)
-		ft_printf("%10s", "Rectangle\n");
-	vec_print(&(f->a));
-	vec_print(&(f->b));
-	vec_print(&(f->c));
-}
+/*
+** t_real		screen_edge_x(t_real e, t_real d, t_vec *p, t_vec *q)
+** {
+** 	t_vec	u;
+** 	t_real	det;
+** 	t_real	t[3];
+**
+** 	u = *p;
+** 	vec_sub(u, q);
+** 	det = -u.x * e + u.y * d;
+** 	t[0] = (e * q->x - d * q->y) / det;
+** 	t[1] = -(u.y * q->x  u.x * q->y) / det;
+** 	return (q->z + t[0] * u.z) / t[1];
+** }
+*/

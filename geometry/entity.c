@@ -6,12 +6,13 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 05:15:47 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/13 05:17:34 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/14 00:06:50 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "geometry.h"
 #include <stdlib.h>
+
 t_entity	entity_new(t_face *face, int n)
 {
 	t_entity	r;

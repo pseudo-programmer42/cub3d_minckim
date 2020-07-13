@@ -6,28 +6,11 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 04:37:14 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/11 07:02:56 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/14 00:10:32 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "linear_algebra.h"
-
-static void	swap(t_real *a, t_real *b)
-{
-	t_real	tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-t_mat		*mat_transpose(t_mat *a)
-{
-	swap(&a->b, &a->d);
-	swap(&a->c, &a->g);
-	swap(&a->f, &a->h);
-	return (a);
-}
 
 t_mat		*mat_inverse(t_mat *m)
 {
@@ -81,7 +64,6 @@ t_mat		*mat_inverse_det(t_mat *m, t_real *det)
 	m->i = r.i;
 	return (m);
 }
-
 
 t_mat		mat_rot(t_real ah, t_real av)
 {

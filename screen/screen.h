@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   screen.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/14 00:12:34 by minckim           #+#    #+#             */
+/*   Updated: 2020/07/14 01:36:36 by minckim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SCREEN_H
 # define SCREEN_H
 # include <mlx.h>
@@ -7,7 +19,7 @@
 # include "../libft/libft.h"
 # include <stdlib.h>
 # define BIG_REAL 100000000000
-# define CAMERA_ANGLE M_PI / 2
+# define CAMERA_ANGLE M_PI_2
 
 typedef struct	s_img{
 	void		*img;
@@ -39,16 +51,41 @@ typedef struct	s_screen{
 	t_real		cos_cam;
 }				t_screen;
 
-
+/*
+** ============================================================================
+** init_screen.c
+** ============================================================================
+*/
 t_screen		init_screen(int rx, int ry, t_real angle);
-void			mlx_pixel(t_img *img, int x, int y, int color);
 t_pixel			**pixel_init(t_screen *screen);
+void			mlx_pixel(t_img *img, int x, int y, int color);
+void			refresh_screen(t_screen *s);
+/*
+** ============================================================================
+** screen_face.c
+** ============================================================================
+*/
 void			screen_face(t_screen *s, t_face *f);
+/*
+** ============================================================================
+** screen_face_util.c
+** ============================================================================
+*/
 int				screen_point(t_screen *s, t_vec *v, t_real *point);
 int				screen_face_point(t_screen *s, t_face *f, t_real *point);
 void			set_boundary(int *boundary, t_real *point);
-int				set_boundary_f(t_screen *s, t_face *f, int *boundary, t_real *point);
+int				set_boundary_f(t_screen *s, t_face *f, int *b, t_real *point);
+/*
+** ============================================================================
+** screen_entity.c
+** ============================================================================
+*/
 void			screen_entity(t_screen *s, t_entity *e);
-void			refresh_screen(t_screen *s);
-void		screen_item(t_screen *s, t_entity *e);
+void			screen_item(t_screen *s, t_entity *e);
+/*
+** ============================================================================
+** save_screenshot.c
+** ============================================================================
+*/
+void			save_screenshot(int argc, char **argv, t_screen *s);
 #endif

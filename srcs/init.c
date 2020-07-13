@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 16:57:26 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/13 04:19:17 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/14 05:55:22 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		check_init_data(t_gamedata *g_data)
 {
 	char	**words;
-	int	i;
+	int		i;
 
 	words = ft_split(TEXTURE_SPECIFIER, ' ');
 	i = -1;
@@ -34,11 +34,20 @@ int		check_init_data(t_gamedata *g_data)
 	return (1);
 }
 
-void	init_player(t_gamedata *g_data)
+void	check_arg_err(int argc, char **argv)
 {
-	g_data->player.run = 0;
-}
+	int		len;
 
+	if (argc == 1)
+		exit_message("Map data empty%s", "");
+	len = ft_strlen(argv[1]);
+	if (ft_strncmp(argv[1] + len - 4, ".cub", 4))
+		exit_message("Wrong extention.%s", "");
+	if (argc == 3 && ft_strncmp("--save", argv[2], 6))
+		exit_message("Second input must be \"--save\"%s", "");
+	if (argc > 3)
+		exit_message("Too many input%s", "");
+}
 
 void	init_game_data(char *path, t_gamedata *g_data)
 {
@@ -48,6 +57,7 @@ void	init_game_data(char *path, t_gamedata *g_data)
 	t_list	*map;
 	char	**map_arr;
 
+	map = 0;
 	if ((fd = open(path, O_RDONLY)) < 0)
 		exit_message("%s", "Wrong path");
 	while (1)
@@ -60,10 +70,10 @@ void	init_game_data(char *path, t_gamedata *g_data)
 		if (eof == 0)
 			break ;
 	}
+	close(fd);
 	check_init_data(g_data);
 	map_arr = lst_to_arr(map);
 	if (check_map(map_arr, g_data) == 0)
 		exit_message("%s", "Map must be closed.");
 	init_entity(g_data, map_arr);
-	init_player(g_data);
 }

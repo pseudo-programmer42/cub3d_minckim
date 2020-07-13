@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 04:24:21 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/13 06:42:14 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/14 00:03:38 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,6 @@ int			bitmap_pixel_color(t_bitmap *img, int i, int j)
 	idx = img->byte_per_line * j + i * img->byte_per_pixel;
 	return ((*(int*)(&img->arr[idx])) & 0xffffff);
 }
-
-// void		print_bitmap_info(t_bitmap *img, int option)
-// {
-// 	ft_printf("x    : %5d\n", img->width);
-// 	ft_printf("y    : %5d\n", img->height);
-// 	if (option)
-// 		print_bitmap_arr(img);
-// }
 
 int			parse_bitmap_size_info(char *buffer, t_bitmap *img)
 {
@@ -87,72 +79,9 @@ t_bitmap	*bitmap_new(char *path)
 	return (img);
 }
 
-void	bitmap_del(t_bitmap *b)
+void		bitmap_del(t_bitmap *b)
 {
 	free(b->arr);
 	free(b);
 	b = 0;
 }
-
-void		print_bitmap_arr(t_bitmap *img)
-{
-	for (int j = 0 ; j < img->height ; j++)
-	{
-		for (int i = 0 ; i < img->width ; i++)
-		{
-			ft_printf("%.6x ", bitmap_pixel_color(img, i, j));
-		}
-		ft_printf("\n");
-	}
-}
-
-/*
-** int	main(void)
-** {
-** 	int		bf_size = 1000000;
-** 	int 	fd;
-** 	char	buffer[bf_size];
-** 	int		line = 40;
-** 	char	*path = "bittest_ps.bmp";
-** 	int		size;
-**
-** 	fd = open(path, O_RDONLY);
-** 	size = read(fd, buffer, bf_size);
-** 	char	*tmp = buffer + 54;
-** 	for (int i = 0; i < size - 54 ; i++)
-** 	{
-** 		printf("%3.2hhx", tmp[i]);
-** 		if (i % line == (line - 1))
-** 			printf("\n");
-** 	}
-**
-**
-** 	// printf("%15s| ", "head");			print(buffer, CHAR, 0, 2);
-** 	// printf("%15s| ", "size");			print(buffer, INT, 2, 6);
-** 	// printf("%15s| ", "array start");	print(buffer, INT, 10, 14);
-** 	// printf("%15s| ", "header size");	print(buffer, INT, 14, 18);
-** 	// printf("%15s| ", "width");			print(buffer, INT, 18, 22);
-** 	// printf("%15s| ", "height");			print(buffer, INT, 22, 26);
-** 	// printf("%15s| ", "bit/pix");		print(buffer, BYTE, 28, 30);
-** 	// printf("%15s| ", "comp");			print(buffer, INT, 30, 34);
-** 	// printf("%15s| ", "raw size");		print(buffer, INT, 34, 38);
-** 	// printf("%15s| ", "resolution-h");	print(buffer, INT, 38, 42);
-** 	// printf("%15s| ", "resolution-v");	print(buffer, INT, 42, 46);
-** 	// printf("%15s| ", "color palette");	print(buffer, INT, 46, 50);
-** 	// printf("%15s| ", "importantcolor");	print(buffer, INT, 50, 54);
-**
-** 	// print(buffer, BYTE, 54, 60);
-** 	t_bitmap *img;
-** 	img = ft_bitmap(path);
-** 	printf("[%d]\n", img->size);
-** 	for (int j = 0 ; j < img->height ; j++)
-** 	{
-** 		for (int i = 0 ; i < img->width ; i++)
-** 		{
-** 			printf("%.6x ", pixel_color(img, i, j));
-** 		}
-** 		printf("\n");
-** 	}
-** }
-**
-*/

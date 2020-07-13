@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   geometry.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/14 00:07:08 by minckim           #+#    #+#             */
+/*   Updated: 2020/07/14 00:07:18 by minckim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GEOMETRY_H
 # define GEOMETRY_H
 # define TRIANGLE 0
@@ -22,13 +34,6 @@ typedef struct		s_face{
 	t_vec			n;
 }					t_face;
 
-/*
-** entity type:
-**	-1 : non
-**	0 : floor and ceilling
-**	1 : wall
-**	2 : sprite
-*/
 typedef struct		s_entity{
 	int				n_face;
 	t_vec			origin;
@@ -37,19 +42,30 @@ typedef struct		s_entity{
 	t_face			*face;
 }					t_entity;
 
+/*
+** ============================================================================
+** face.c
+** ============================================================================
+*/
 t_face				face_new(t_vec *a, t_vec *b, t_vec *c, int color);
 t_face				face_copy(t_face *f, t_vec *v);
 t_face				*face_move(t_face *f, t_vec *v);
 t_face				*face_rot(t_face *f, t_vec *center, t_real h, t_real v);
 t_face				*face_rot_rc(t_face *f, t_vec *center, t_real h, t_real v);
-
-t_entity	entity_new(t_face *face, int n);
-t_entity	*entity_move(t_entity *e, t_vec *v);
-t_entity	*entity_rot(t_entity *e, t_real h, t_real v);
-t_entity	entity_deepcopy(t_entity *e, t_vec *v);
-t_entity	entity_copy(t_entity *e, t_vec *v);
-
-void	face_print(t_face *f);
-
-
+/*
+** ============================================================================
+** entity.c
+** ============================================================================
+*/
+t_entity			entity_new(t_face *face, int n);
+t_entity			*entity_move(t_entity *e, t_vec *v);
+t_entity			*entity_rot(t_entity *e, t_real h, t_real v);
+t_entity			entity_deepcopy(t_entity *e, t_vec *v);
+t_entity			entity_copy(t_entity *e, t_vec *v);
+/*
+** ============================================================================
+** entity.c
+** ============================================================================
+*/
+void				face_print(t_face *f);
 #endif

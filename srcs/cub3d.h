@@ -1,5 +1,20 @@
-#include "../screen/screen.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/14 00:49:13 by minckim           #+#    #+#             */
+/*   Updated: 2020/07/14 04:15:17 by minckim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef CUB3D_H
+# define CUB3D_H
+# include "../screen/screen.h"
 # include "../libft/libft.h"
+# include "key.h"
 # define TEXTURE_SPECIFIER "EA NO WE SO F C S R"
 # define N_TEXTURE 8
 # define TYPE_FLOOR 0
@@ -18,10 +33,9 @@
 # define WALL_WIDTH 3000
 # define EYE_LEVEL 1700
 # define CUB_CAM_ANGLE M_PI_2
-# define ANGLE_UNIT M_PI / 180 * 3
+# define ANGLE_UNIT 0.05235987756
 # define MOVE_WALK 300
 # define MOVE_RUN 1000
-# include "key.h"
 
 typedef struct	s_player{
 	t_vec		origin;
@@ -52,38 +66,58 @@ typedef struct	s_gamedata{
 **	init.c
 **	===========================================================================
 */
-
-void	init_game_data(char *path, t_gamedata *g_data);
-int		parse_info(t_gamedata *g_data, char *line);
+void			check_arg_err(int argc, char **argv);
+void			init_game_data(char *path, t_gamedata *g_data);
 /*
 **	===========================================================================
 **	init_pars_line.c
 **	===========================================================================
 */
-void	parse_map(char *line, t_list **map);
-int		parse_info(t_gamedata *g_data, char *line);
+void			parse_map(char *line, t_list **map);
+int				parse_info(t_gamedata *g_data, char *line);
 /*
 **	===========================================================================
 **	init_check_map.c
 **	===========================================================================
 */
-int		check_map(char **map, t_gamedata *g_data);
+int				check_map(char **map, t_gamedata *g_data);
 /*
 **	===========================================================================
 **	init_util.c
 **	===========================================================================
 */
-void	exit_message(char *err_massage, char *arg);
-void	split_del(char **words);
-int		lst_content_size(t_list *lst);
-char	**lst_to_arr(t_list *lst);
+void			exit_message(char *err_massage, char *arg);
+void			split_del(char **words);
+int				lst_content_size(t_list *lst);
+char			**lst_to_arr(t_list *lst);
+
 /*
 **	===========================================================================
-**	init_util.c
+**	init_entity.c
 **	===========================================================================
 */
-
-void	init_entity(t_gamedata *g_data, char **map_arr);
-
-
-void	print_entities(t_gamedata *g_data);
+void			init_entity(t_gamedata *g_data, char **map_arr);
+/*
+**	===========================================================================
+**	init_create_entity.c
+**	===========================================================================
+*/
+t_entity		create_wall(t_bitmap **texture);
+t_entity		create_floor_ceilling(int *color);
+t_entity		create_sprite(t_bitmap **texture);
+t_entity		create_non(void);
+/*
+**	===========================================================================
+**	print_entities.c
+**	===========================================================================
+*/
+void			print_entities(t_gamedata *g_data);
+/*
+**	===========================================================================
+**	player_manage.c
+**	===========================================================================
+*/
+void			player_turn(t_player *player, int key);
+void			player_move(t_player *player, int key, int run);
+void			player_fly(t_player *player, int key);
+#endif

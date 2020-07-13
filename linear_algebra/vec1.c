@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 04:37:32 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/12 23:15:28 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/14 00:09:59 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,5 @@ t_vec	*vec_unit(t_vec *a)
 	a->x /= d;
 	a->y /= d;
 	a->z /= d;
-	return a;
+	return (a);
 }

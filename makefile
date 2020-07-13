@@ -6,7 +6,7 @@
 #    By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/29 16:58:52 by minckim           #+#    #+#              #
-#    Updated: 2020/07/13 05:19:17 by minckim          ###   ########.fr        #
+#    Updated: 2020/07/14 05:54:23 by minckim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,10 @@ NAME = cub3d
 
 # compile option
 CC = gcc
-# FLAG = -Wall -Wextra -Werror -O3
-FLAG = -O3
+FLAG = -Wall -Wextra -Werror -O3
+# FLAG = -Wall -Wextra -Werror -O3 -g
+# FLAG = -O3 -g
+# FLAG = -O3
 
 #library
 LIBFT_DIR = ./libft/
@@ -39,8 +41,10 @@ BITMAP_NAME = \
 SCREEN_DIR = ./screen/
 SCREEN_NAME = \
 	init_screen.c\
-	face_print.c\
-	face_print_util.c
+	screen_entity.c\
+	screen_face.c\
+	screen_face_util.c\
+	save_screenshot.c
 
 LINEAR_DIR = ./linear_algebra/
 LINEAR_NAME = \
@@ -54,8 +58,7 @@ LINEAR_NAME = \
 
 GEOMETRY_DIR = ./geometry/
 GEOMETRY_NAME =\
-	face0.c\
-	face1.c\
+	face.c\
 	entity.c\
 	geometry_print.c
 
@@ -66,7 +69,10 @@ SRCS_NAME =\
 	init_parse_line.c\
 	init_util.c\
 	init_check_map.c\
-	init_create_entity.c
+	init_entity.c\
+	init_create_entity.c\
+	player_manage.c\
+	print_entities.c
 
 SRCS_BONUS_DIR = ./srcs_bonus/
 SRCS_BONUS_NAME =\
@@ -75,7 +81,9 @@ SRCS_BONUS_NAME =\
 	init_parse_line.c\
 	init_util.c\
 	init_check_map.c\
-	init_create_entity.c
+	init_create_entity.c\
+	player_manage.c\
+	print_entities.c
 
 SRCS = $(addprefix $(SRCS_DIR),$(SRCS_NAME))\
 	$(addprefix $(SCREEN_DIR),$(SCREEN_NAME))\

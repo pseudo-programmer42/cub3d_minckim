@@ -6,13 +6,30 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 02:43:21 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/08 02:51:07 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/14 00:10:11 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "linear_algebra.h"
 
-t_mat	mat_new_vec(t_vec *a, t_vec *b, t_vec *c)
+static void	swap(t_real *a, t_real *b)
+{
+	t_real	tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+t_mat		*mat_transpose(t_mat *a)
+{
+	swap(&a->b, &a->d);
+	swap(&a->c, &a->g);
+	swap(&a->f, &a->h);
+	return (a);
+}
+
+t_mat		mat_new_vec(t_vec *a, t_vec *b, t_vec *c)
 {
 	t_mat	r;
 
@@ -25,5 +42,5 @@ t_mat	mat_new_vec(t_vec *a, t_vec *b, t_vec *c)
 	r.c = c->x;
 	r.f = c->y;
 	r.i = c->z;
-	return r;
+	return (r);
 }

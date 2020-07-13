@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 19:39:12 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/13 05:15:22 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/14 03:31:50 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,11 @@ int		check_row(char **map)
 		while (*tmp)
 		{
 			if (*(tmp) != '1')
-			{
 				return (0);
-			}
 			while (*tmp && *tmp != ' ')
 				tmp++;
 			if (*(tmp - 1) != '1')
-			{
 				return (0);
-			}
 			while (*tmp && *tmp == ' ')
 				tmp++;
 		}
@@ -56,14 +52,11 @@ void	size_map(char **map, int *i, int *j)
 		(*i)++;
 }
 
-int		check_col(char **map)
+int		check_col(char **map, int mx_i, int mx_j)
 {
 	int		i;
 	int		j;
-	int		mx_j;
-	int		mx_i;
 
-	size_map(map, &mx_i, &mx_j);
 	j = 0;
 	while (j < mx_j)
 	{
@@ -73,24 +66,23 @@ int		check_col(char **map)
 		while (i < mx_i)
 		{
 			if (map[i++][j] != '1')
-				return 0;
+				return (0);
 			while (i < mx_i && map[i][j] != ' ')
 				i++;
 			if (map[i - 1][j] != '1')
-				return 0;
+				return (0);
 			while (i < mx_i && map[i][j] == ' ')
 				i++;
 		}
 		j++;
 	}
-
 	return (1);
 }
 
 int		check_map(char **map, t_gamedata *g_data)
 {
 	size_map(map, &g_data->size_x, &g_data->size_y);
-	if (check_row(map) && check_col(map))
+	if (check_row(map) && check_col(map, g_data->size_x, g_data->size_y))
 		return (1);
 	else
 		return (0);

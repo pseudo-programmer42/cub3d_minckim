@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 20:00:06 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/13 05:15:02 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/14 05:55:47 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	exit_message(char *err_massage, char *arg)
 {
 	ft_printf("Error\n-");
 	ft_printf(err_massage, arg);
-	ft_putchar_fd('\n', 1);
+	ft_printf("\n");
 	exit(1);
 }
 
@@ -49,15 +49,13 @@ int		lst_content_size(t_list *lst)
 
 char	**lst_to_arr(t_list *lst)
 {
-	int		size;
 	char	**arr;
 	char	**arr_tmp;
 	int		size_i;
 	int		i;
 
-	size = ft_lstsize(lst);
 	size_i = lst_content_size(lst);
-	arr = (char**)malloc(sizeof(char*) * (size + 1));
+	arr = (char**)malloc(sizeof(char*) * (size_i + 1));
 	arr_tmp = arr;
 	while (lst)
 	{
@@ -69,7 +67,7 @@ char	**lst_to_arr(t_list *lst)
 			(*arr_tmp)[i++] = ' ';
 		(*arr_tmp++)[size_i] = 0;
 		lst = lst->next;
-		printf("%s\n", *(arr_tmp-1));
+		ft_printf("%s\n", *(arr_tmp - 1));
 	}
 	*arr_tmp = 0;
 	return (arr);

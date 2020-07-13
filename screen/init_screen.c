@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_screen.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/13 23:50:15 by minckim           #+#    #+#             */
+/*   Updated: 2020/07/14 00:41:38 by minckim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "screen.h"
 #define BASIC_COLOR 0
 
@@ -43,7 +55,8 @@ t_pixel		**pixel_init(t_screen *s)
 			tmp->distance = BIG_REAL;
 			tmp->ray = vec_new(s->distance, s->rx / 2 - i, s->ry / 2 - j);
 			vec_unit(&tmp->ray);
-			tmp->color = s->img.addr + (j * s->img.line_length + i * (s->img.bits_per_pixel / 8));
+			tmp->color = s->img.addr + \
+				(j * s->img.line_length + i * (s->img.bits_per_pixel / 8));
 		}
 	}
 	return (pixel);
@@ -51,7 +64,7 @@ t_pixel		**pixel_init(t_screen *s)
 
 void		mlx_pixel(t_img *img, int x, int y, int color)
 {
-	char    *dst;
+	char	*dst;
 
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
@@ -59,9 +72,9 @@ void		mlx_pixel(t_img *img, int x, int y, int color)
 
 void		refresh_screen(t_screen *s)
 {
-	int	i;
-	int	j;
-	t_pixel **p;
+	int		i;
+	int		j;
+	t_pixel	**p;
 
 	p = s->pixel;
 	i = -1;

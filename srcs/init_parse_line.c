@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_parse_line.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/13 23:50:17 by minckim           #+#    #+#             */
+/*   Updated: 2020/07/14 05:22:46 by minckim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int		parse_color(char **words)
@@ -20,7 +32,7 @@ void	parse_res(t_gamedata *g_data, char **words)
 {
 	int	rx;
 	int	ry;
-	ft_printf("%s", "parsing res value...\n");
+
 	if (!words[1])
 		exit_message("%s", "Missing factor: screen res x");
 	if (!words[2])
@@ -38,8 +50,6 @@ void	put_data(t_gamedata *g_data, char **words, int i, char **specifier)
 		parse_res(g_data, words);
 	else if (!((g_data->texture)[i] = bitmap_new(words[1])))
 		exit_message("Wrong path: %s", specifier[i]);
-
-
 }
 
 int		parse_info(t_gamedata *g_data, char *line)
@@ -60,7 +70,7 @@ int		parse_info(t_gamedata *g_data, char *line)
 		{
 			put_data(g_data, words, i, specifier);
 			split_del(words);
-			return (1) ;
+			return (1);
 		}
 		i++;
 	}
@@ -79,5 +89,5 @@ void	parse_map(char *line, t_list **map)
 			exit_message("Wrong character(%.1s) in the map data.", line_tmp);
 		line_tmp++;
 	}
-	ft_lstadd_front(map, ft_lstnew(ft_strdup(line)));
+	ft_lstadd_back(map, ft_lstnew(ft_strdup(line)));
 }

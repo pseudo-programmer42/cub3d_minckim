@@ -1,5 +1,5 @@
 CC = gcc
-CFLAG = -Wall -Wextra -Werror
+CFLAG = -Wall -Wextra -Werror -g
 
 LIBFT	=\
 ft_memset.c		ft_bzero.c		ft_memcpy.c\
