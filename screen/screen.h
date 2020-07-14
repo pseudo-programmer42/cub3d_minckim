@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:12:34 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/14 01:36:36 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/15 04:15:09 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include "../geometry/geometry.h"
 # include "../libft/libft.h"
 # include <stdlib.h>
-# define BIG_REAL 100000000000
 # define CAMERA_ANGLE M_PI_2
 
 typedef struct	s_img{
@@ -44,11 +43,11 @@ typedef struct	s_screen{
 	int			ry;
 	t_pixel		**pixel;
 	t_vec		origin;
-	t_real		h;
-	t_real		v;
-	t_real		tan_camera_angle_2;
+	t_angle		h;
+	t_angle		v;
+	t_angle		tan_camera_angle_2;
 	t_real		distance;
-	t_real		cos_cam;
+	t_angle		cos_cam;
 }				t_screen;
 
 /*

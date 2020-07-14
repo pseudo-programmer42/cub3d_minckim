@@ -6,7 +6,7 @@
 #    By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/29 16:58:52 by minckim           #+#    #+#              #
-#    Updated: 2020/07/14 05:54:23 by minckim          ###   ########.fr        #
+#    Updated: 2020/07/15 00:57:26 by minckim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,10 @@ NAME = cub3d
 
 # compile option
 CC = gcc
-FLAG = -Wall -Wextra -Werror -O3
+# FLAG = -Wall -Wextra -Werror -O3
 # FLAG = -Wall -Wextra -Werror -O3 -g
 # FLAG = -O3 -g
-# FLAG = -O3
+FLAG = -O3
 
 #library
 LIBFT_DIR = ./libft/
@@ -54,6 +54,7 @@ LINEAR_NAME = \
 	mat0.c\
 	mat1.c\
 	mat2.c\
+	mat3.c\
 	linear_algebra_print.c
 
 GEOMETRY_DIR = ./geometry/

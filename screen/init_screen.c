@@ -6,14 +6,14 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 23:50:15 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/14 00:41:38 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/15 04:16:22 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "screen.h"
 #define BASIC_COLOR 0
 
-t_screen	init_screen(int rx, int ry, t_real angle)
+t_screen	init_screen(int rx, int ry, t_angle angle)
 {
 	t_screen	screen;
 	t_img		*img;

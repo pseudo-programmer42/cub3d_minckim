@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 04:37:14 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/14 00:10:32 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/15 04:10:21 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ t_mat		*mat_inverse_det(t_mat *m, t_real *det)
 	return (m);
 }
 
-t_mat		mat_rot(t_real ah, t_real av)
+t_mat		mat_rot(t_angle ah, t_angle av)
 {
-	t_real	ch;
-	t_real	sh;
-	t_real	cv;
-	t_real	sv;
+	t_angle	ch;
+	t_angle	sh;
+	t_angle	cv;
+	t_angle	sv;
 	t_mat	r;
 
 	ch = cos(ah);
@@ -89,12 +89,12 @@ t_mat		mat_rot(t_real ah, t_real av)
 	return (r);
 }
 
-t_mat		mat_rot_rc(t_real ah, t_real av)
+t_mat		mat_rot_rc(t_angle ah, t_angle av)
 {
-	t_real	ch;
-	t_real	sh;
-	t_real	cv;
-	t_real	sv;
+	t_angle	ch;
+	t_angle	sh;
+	t_angle	cv;
+	t_angle	sv;
 	t_mat	r;
 
 	ch = cos(ah);

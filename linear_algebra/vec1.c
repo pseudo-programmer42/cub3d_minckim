@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 04:37:32 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/14 00:09:59 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/15 04:11:18 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ t_vec	vec_cross(t_vec *a, t_vec *b)
 	return (r);
 }
 
-t_vec	*vec_rot(t_vec *a, t_real h, t_real v)
+t_vec	*vec_rot(t_vec *a, t_angle h, t_angle v)
 {
-	t_real	ch;
-	t_real	sh;
-	t_real	cv;
-	t_real	sv;
+	t_angle	ch;
+	t_angle	sh;
+	t_angle	cv;
+	t_angle	sv;
 	t_vec	r;
 
 	r = vec_new(a->x, a->y, a->z);
@@ -41,12 +41,12 @@ t_vec	*vec_rot(t_vec *a, t_real h, t_real v)
 	return (a);
 }
 
-t_vec	*vec_rot_rc(t_vec *a, t_real h, t_real v)
+t_vec	*vec_rot_rc(t_vec *a, t_angle h, t_angle v)
 {
-	t_real	ch;
-	t_real	sh;
-	t_real	cv;
-	t_real	sv;
+	t_angle	ch;
+	t_angle	sh;
+	t_angle	cv;
+	t_angle	sv;
 	t_vec	r;
 
 	r = vec_new(a->x, a->y, a->z);

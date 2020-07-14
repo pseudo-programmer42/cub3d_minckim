@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:49:13 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/14 04:15:17 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/15 05:56:59 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@
 
 typedef struct	s_player{
 	t_vec		origin;
-	t_real		h;
-	t_real		v;
+	t_angle		h;
+	t_angle		v;
 	int			run;
 }				t_player;
 

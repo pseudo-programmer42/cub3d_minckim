@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 18:03:07 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/14 00:47:54 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/15 06:02:29 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,41 +18,33 @@ t_real	set_distance(t_face *f)
 	t_vec	a;
 	t_real	det;
 
-	r = mat_new_vec(&f->u, &f->v, &f->n);
-	a = vec_new(-f->a.x, -f->a.y, -f->a.z);
-	mat_inverse_det(&r, &det);
-	mat_vec(&r, &a);
-	vec_div(&a, det);
-	return (-a.z);
+	a = equation_vector(&f->u, &f->v, &f->n, &f->a);
+	return (a.z);
 }
 
 void	pixel_face(t_pixel *pixel, t_face *f)
 {
 	t_vec	a;
-	t_mat	r;
-	t_real	det;
 	int		color;
+	t_vec	b;
 
-	a = vec_new(-f->a.x, -f->a.y, -f->a.z);
-	r = mat_new_vec(&f->u, &f->v, &(pixel->ray));
-	mat_inverse_det(&r, &det);
-	mat_vec(&r, &a);
-	vec_div(&a, det);
-	a.z = -a.z;
-	if (a.x < 0 || 1 < a.x || a.y < 0 || 1 < a.y || a.z < 0 || \
-		a.z > pixel->distance)
+	b = vec_new(-f->a.x, -f->a.y, -f->a.z);
+	a = equation_vector(&pixel->ray, &f->u, &f->v, &b);
+	a.x = -a.x;
+	if (a.z < 0 || 1 < a.z || a.y < 0 || 1 < a.y || a.x < 0 || \
+		a.x > pixel->distance)
 		return ;
-	if (f->type == TRIANGLE && a.x + a.y > 1)
+	if (f->type == TRIANGLE && a.y + a.z > 1)
 		return ;
 	if (f->img)
 	{
-		color = bitmap_pixel_color(f->img, a.x * ((t_bitmap*)(f->img))->width, \
-		a.y * ((t_bitmap*)(f->img))->height);
+		color = bitmap_pixel_color(f->img, a.y * ((t_bitmap*)(f->img))->width,\
+		a.z * ((t_bitmap*)(f->img))->height);
 		*(pixel->color) = color == 0x00ffffff ? *(pixel->color) : color;
 	}
 	else
 		*(pixel->color) = (f->color);
-	pixel->distance = a.z;
+	pixel->distance = a.x;
 }
 
 void	screen_face(t_screen *s, t_face *f)

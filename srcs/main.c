@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:54:52 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/14 04:51:05 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/15 05:57:09 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int		main(int argc, char **argv)
 	t_gamedata	g_data;
 	t_screen	*s;
 
-	check_arg_err(argc, argv);
 	ft_memset(&g_data, 0, sizeof(g_data));
 	init_game_data(argv[1], &g_data);
 	s = &g_data.screen;
