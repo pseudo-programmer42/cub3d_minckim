@@ -6,7 +6,7 @@
 #    By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/29 16:58:52 by minckim           #+#    #+#              #
-#    Updated: 2020/07/15 00:57:26 by minckim          ###   ########.fr        #
+#    Updated: 2020/07/16 06:26:09 by minckim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,10 @@ NAME = cub3d
 
 # compile option
 CC = gcc
-# FLAG = -Wall -Wextra -Werror -O3
+FLAG = -Wall -Wextra -Werror -O3
 # FLAG = -Wall -Wextra -Werror -O3 -g
 # FLAG = -O3 -g
-FLAG = -O3
+# FLAG = -O3
 
 #library
 LIBFT_DIR = ./libft/
@@ -54,7 +54,9 @@ LINEAR_NAME = \
 	mat0.c\
 	mat1.c\
 	mat2.c\
-	mat3.c\
+	equation.c\
+	equation_line_operation0.c\
+	equation_line_operation1.c\
 	linear_algebra_print.c
 
 GEOMETRY_DIR = ./geometry/
@@ -73,7 +75,8 @@ SRCS_NAME =\
 	init_entity.c\
 	init_create_entity.c\
 	player_manage.c\
-	print_entities.c
+	print_entities.c\
+	put_fps.c
 
 SRCS_BONUS_DIR = ./srcs_bonus/
 SRCS_BONUS_NAME =\
@@ -82,9 +85,11 @@ SRCS_BONUS_NAME =\
 	init_parse_line.c\
 	init_util.c\
 	init_check_map.c\
+	init_entity.c\
 	init_create_entity.c\
 	player_manage.c\
-	print_entities.c
+	print_entities.c\
+	put_fps.c
 
 SRCS = $(addprefix $(SRCS_DIR),$(SRCS_NAME))\
 	$(addprefix $(SCREEN_DIR),$(SCREEN_NAME))\
@@ -102,12 +107,19 @@ OBJS = $(SRCS:.c=.o)
 
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
+HEADERS = \
+	$(SRCS_DIR)cub3d.h\
+	$(SCREEN_DIR)screen.h\
+	$(LINEAR_DIR)linear_algebra.h\
+	$(BITMAP_DIR)bitmap.h\
+	$(GEOMETRY_DIR)geometry.h\
+
 #rules
 
 all : $(NAME)
 
 norm :
-	norminette $(SRCS)
+	norminette $(SRCS) $(HEADERS)
 
 test : $(OBJS_TEST) library
 	$(CC) $(FLAG) -o $(NAME) $(OBJS_TEST) \
@@ -121,7 +133,7 @@ $(NAME) : $(OBJS) library
 	-framework OpenGL -framework AppKit && ./$(NAME) map2.cub
 
 bonus : $(OBJS_BONUS) library
-	$(CC) $(FLAG) -o $(NAME) $(OBJS) \
+	$(CC) $(FLAG) -o $(NAME) $(OBJS_BONUS) \
 	-lm -L. -lft -I./includes -I./usr/include -lmlx \
 	-framework OpenGL -framework AppKit && ./$(NAME) map2.cub
 
@@ -147,7 +159,7 @@ clean :
 
 
 fclean :
-	rm -rf $(OBJS) $(LIBFT) $(NAME)
+	rm -rf $(OBJS) $(OBJS_BONUS) $(LIBFT) $(NAME)
 	make clean -C $(LIBFT_DIR)
 
 

@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 23:50:15 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/15 04:16:22 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/16 00:38:11 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ void		refresh_screen(t_screen *s)
 		j = -1;
 		while (++j < s->ry)
 		{
-			*((p[i][j]).color) = 0;
 			(p[i][j]).distance = BIG_REAL;
 		}
 	}

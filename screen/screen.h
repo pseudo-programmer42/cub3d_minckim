@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:12:34 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/15 04:15:09 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/16 05:52:30 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void			refresh_screen(t_screen *s);
 ** screen_face.c
 ** ============================================================================
 */
-void			screen_face(t_screen *s, t_face *f);
+int				screen_face(t_screen *s, t_face *f, int odd);
 /*
 ** ============================================================================
 ** screen_face_util.c
@@ -79,8 +79,8 @@ int				set_boundary_f(t_screen *s, t_face *f, int *b, t_real *point);
 ** screen_entity.c
 ** ============================================================================
 */
-void			screen_entity(t_screen *s, t_entity *e);
-void			screen_item(t_screen *s, t_entity *e);
+int				screen_entity(t_screen *s, t_entity *e, int odd);
+int				screen_item(t_screen *s, t_entity *e, int odd);
 /*
 ** ============================================================================
 ** save_screenshot.c

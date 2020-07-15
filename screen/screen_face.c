@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 18:03:07 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/15 06:02:29 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/16 07:20:26 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 
 t_real	set_distance(t_face *f)
 {
-	t_mat	r;
-	t_vec	a;
-	t_real	det;
-
-	a = equation_vector(&f->u, &f->v, &f->n, &f->a);
-	return (a.z);
+	return (equation_vector(&f->u, &f->v, &f->n, &f->a).z);
 }
 
 void	pixel_face(t_pixel *pixel, t_face *f)
@@ -47,7 +42,7 @@ void	pixel_face(t_pixel *pixel, t_face *f)
 	pixel->distance = a.x;
 }
 
-void	screen_face(t_screen *s, t_face *f)
+int		screen_face(t_screen *s, t_face *f, int odd)
 {
 	int		boundary[4];
 	t_real	point[8];
@@ -58,17 +53,22 @@ void	screen_face(t_screen *s, t_face *f)
 	face_rot_rc(f, &(s->origin), s->h, s->v);
 	near_distance = set_distance(f);
 	if (f->n.x > s->cos_cam)
-		return ;
+		return 0;
 	if (set_boundary_f(s, f, boundary, point) == 0)
-		return ;
-	i = boundary[0] - 1;
-	while (++i < boundary[2])
+		return 0;
+	i = boundary[1] - 2;
+	if (i % 2)
+		i++;
+	i += odd;
+	odd = 0;
+	while ((i += 2) < boundary[3])
 	{
-		j = boundary[1] - 1;
-		while (++j < boundary[3])
+		j = boundary[0] - 1;
+		while (++j < boundary[2])
 		{
-			if (s->pixel[i][j].distance > near_distance)
-				pixel_face(&((s->pixel)[i][j]), f);
+			if (s->pixel[j][i].distance > near_distance)
+				pixel_face(&((s->pixel)[j][i]), f);
 		}
 	}
+	return 1;
 }

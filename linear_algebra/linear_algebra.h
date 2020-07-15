@@ -6,14 +6,15 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 04:36:56 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/15 04:59:15 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/16 03:33:59 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LINEAR_ALGEBRA_H
 # define LINEAR_ALGEBRA_H
-# define BIG_REAL 100000000000
+# define BIG_REAL INFINITY
 # include <math.h>
+
 typedef float	t_real;
 typedef float	t_angle;
 
@@ -35,11 +36,6 @@ typedef struct	s_mat{
 	t_real		i;
 }				t_mat;
 /*
-** ============================================================================
-** vector
-** ============================================================================
-*/
-/*
 ** vec0.c----------------------------------------------------------------------
 */
 t_vec			vec_new(t_real a, t_real b, t_real c);
@@ -59,11 +55,6 @@ t_vec			*vec_rot_rc(t_vec *a, t_angle h, t_angle v);
 t_vec			vec_cross(t_vec *a, t_vec *b);
 t_vec			*vec_unit(t_vec *a);
 t_real			vec_dot(t_vec *a, t_vec *b);
-/*
-** ============================================================================
-** matrix
-** ============================================================================
-*/
 /*
 ** mat0.c----------------------------------------------------------------------
 */
@@ -85,15 +76,26 @@ t_mat			mat_rot_rc(t_angle h, t_angle v);
 t_mat			*mat_transpose(t_mat *a);
 t_mat			mat_new_vec(t_vec *a, t_vec *b, t_vec *c);
 /*
-** mat3.c----------------------------------------------------------------------
+** equation.c------------------------------------------------------------------
 */
-t_vec	equation_vector(t_vec *u, t_vec *v, t_vec *r, t_vec *x);
-int		equation3(t_real *a, t_real *b, t_real *c);
-
+t_vec			equation_vector(t_vec *u, t_vec *v, t_vec *r, t_vec *x);
+int				equation3(t_real *a, t_real *b, t_real *c);
 /*
-** ============================================================================
-** linear_algebra_print.c
-** ============================================================================
+** equation_line_operation0.c--------------------------------------------------
+*/
+void			line_mul3(t_real *a, t_real b);
+void			line_mul2(t_real *a, t_real b);
+void			line_div3(t_real *a, t_real b);
+void			line_div2(t_real *a, t_real b);
+/*
+** equation_line_operation1.c--------------------------------------------------
+*/
+void			line_sub3(t_real *a, t_real *b);
+void			line_sub2(t_real *a, t_real *b);
+int				equation2(t_real *a, t_real *b);
+void			line_swap(t_real **a, t_real **b);
+/*
+** linear_algebra_print.c------------------------------------------------------
 */
 void			mat_print(t_mat *a);
 void			vec_print(t_vec *a);
