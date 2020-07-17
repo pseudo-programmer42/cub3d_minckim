@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:07:08 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/14 00:07:18 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/16 10:01:10 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct		s_face{
 }					t_face;
 
 typedef struct		s_entity{
+	int				type;
 	int				n_face;
 	t_vec			origin;
 	t_real			h;

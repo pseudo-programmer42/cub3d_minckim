@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 20:00:12 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/14 03:47:25 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/16 10:14:06 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_entity	create_wall(t_bitmap **texture)
 	return (wall);
 }
 
-t_entity	create_floor_ceilling(int *color)
+t_entity	create_floor_ceilling(t_bitmap **texture)
 {
 	t_entity	floor;
 	t_vec		a;
@@ -59,8 +59,8 @@ t_entity	create_floor_ceilling(int *color)
 	floor.face[0] = face_new(&a, &b, &c, RECTANGLE);
 	floor.face[1] = floor.face[0];
 	face_rot(floor.face + 1, &z, 0, M_PI);
-	floor.face[0].color = color[0];
-	floor.face[1].color = color[1];
+	floor.face[0].img = texture[TEXTURE_FLOOR];
+	floor.face[1].img = texture[TEXTURE_CEILLING];
 	return (floor);
 }
 

@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 19:39:12 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/14 03:31:50 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/16 13:07:41 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int		check_row(char **map)
 		while (*tmp)
 		{
 			if (*(tmp) != '1')
+			{
+				ft_printf("x");
 				return (0);
+			}
 			while (*tmp && *tmp != ' ')
 				tmp++;
 			if (*(tmp - 1) != '1')

@@ -6,7 +6,7 @@
 #    By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/29 16:58:52 by minckim           #+#    #+#              #
-#    Updated: 2020/07/16 06:26:09 by minckim          ###   ########.fr        #
+#    Updated: 2020/07/16 13:23:48 by minckim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@ NAME = cub3d
 
 # compile option
 CC = gcc
-FLAG = -Wall -Wextra -Werror -O3
-# FLAG = -Wall -Wextra -Werror -O3 -g
+# FLAG = -Wall -Wextra -Werror -O3
+FLAG = -Wall -Wextra -Werror -O3 -g
 # FLAG = -O3 -g
 # FLAG = -O3
 
@@ -89,7 +89,8 @@ SRCS_BONUS_NAME =\
 	init_create_entity.c\
 	player_manage.c\
 	print_entities.c\
-	put_fps.c
+	put_fps.c\
+	check_collision.c
 
 SRCS = $(addprefix $(SRCS_DIR),$(SRCS_NAME))\
 	$(addprefix $(SCREEN_DIR),$(SCREEN_NAME))\
@@ -130,12 +131,12 @@ test : $(OBJS_TEST) library
 $(NAME) : $(OBJS) library
 	$(CC) $(FLAG) -o $(NAME) $(OBJS) \
 	-lm -L. -lft -I./includes -I./usr/include -lmlx -lpthread \
-	-framework OpenGL -framework AppKit && ./$(NAME) map2.cub
+	-framework OpenGL -framework AppKit && ./$(NAME) map_bonus2.cub
 
 bonus : $(OBJS_BONUS) library
 	$(CC) $(FLAG) -o $(NAME) $(OBJS_BONUS) \
 	-lm -L. -lft -I./includes -I./usr/include -lmlx \
-	-framework OpenGL -framework AppKit && ./$(NAME) map2.cub
+	-framework OpenGL -framework AppKit && ./$(NAME) map_bonus.cub
 
 linux: $(OBJS) library
 	$(CC) $(FLAG) -o $(NAME) $(OBJS) \
@@ -165,6 +166,7 @@ fclean :
 
 re : fclean $(NAME)
 
+reb : fclean bonus
 
 # MMS_DIR = ./minilibx_mms_20200219/
 # MMS = libmlx.dylib

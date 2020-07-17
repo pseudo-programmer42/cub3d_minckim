@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 18:03:07 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/16 07:20:26 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/16 08:55:57 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,22 +53,19 @@ int		screen_face(t_screen *s, t_face *f, int odd)
 	face_rot_rc(f, &(s->origin), s->h, s->v);
 	near_distance = set_distance(f);
 	if (f->n.x > s->cos_cam)
-		return 0;
+		return (0);
 	if (set_boundary_f(s, f, boundary, point) == 0)
-		return 0;
+		return (0);
 	i = boundary[1] - 2;
-	if (i % 2)
-		i++;
+	i = i % 2 ? i + 1 : i;
 	i += odd;
 	odd = 0;
 	while ((i += 2) < boundary[3])
 	{
 		j = boundary[0] - 1;
 		while (++j < boundary[2])
-		{
 			if (s->pixel[j][i].distance > near_distance)
 				pixel_face(&((s->pixel)[j][i]), f);
-		}
 	}
-	return 1;
+	return (1);
 }

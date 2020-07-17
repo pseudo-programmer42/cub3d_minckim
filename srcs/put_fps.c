@@ -6,14 +6,14 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 00:39:43 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/16 07:01:19 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/16 08:53:30 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #define FILTER_SIZE 2
 
-double		fps_filter(double x)
+double	fps_filter(double x)
 {
 	static double	fps;
 
@@ -52,8 +52,8 @@ char	*frame_string(clock_t frame_start)
 	static clock_t		t0;
 	clock_t				t1;
 	char				*str_int;
-	static double			fps_prev;
-	double					fps;
+	static double		fps_prev;
+	double				fps;
 
 	t1 = clock();
 	fps = 1000 * (double)((CLOCKS_PER_SEC) / (t1 - frame_start));

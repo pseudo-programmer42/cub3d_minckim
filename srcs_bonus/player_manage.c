@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 01:13:40 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/16 02:51:06 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/16 10:38:11 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	player_turn(t_player *player, int key)
 		player->v -= ANGLE_UNIT;
 }
 
-void	player_move(t_player *player, int key, int run)
+void	player_move(t_gamedata *g_data, int key, int run)
 {
 	t_vec			m;
 	int				speed;
@@ -50,14 +50,15 @@ void	player_move(t_player *player, int key, int run)
 		speed = run ? MOVE_RUN : MOVE_WALK;
 		m = vec_new(speed, 0, 0);
 		if (key == KEY_A)
-			vec_rot(&m, player->h + M_PI / 2, 0);
+			vec_rot(&m, g_data->player.h + M_PI / 2, 0);
 		else if (key == KEY_D)
-			vec_rot(&m, player->h - M_PI / 2, 0);
+			vec_rot(&m, g_data->player.h - M_PI / 2, 0);
 		else if (key == KEY_W)
-			vec_rot(&m, player->h, 0);
+			vec_rot(&m, g_data->player.h, 0);
 		else if (key == KEY_S)
-			vec_rot(&m, player->h + M_PI, 0);
-		vec_add(&(player->origin), &m);
+			vec_rot(&m, g_data->player.h + M_PI, 0);
+		if (!(check_collision(g_data, &m)))
+			vec_add(&(g_data->player.origin), &m);
 	}
 }
 

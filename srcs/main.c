@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:54:52 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/16 02:51:08 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/16 13:13:14 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int		main(int argc, char **argv)
 	refresh(&g_data);
 	save_screenshot(argc, argv, s);
 	mlx_loop_hook(s->mlx, refresh, &g_data);
+	mlx_hook(s->win, 2, 1, cub_key_hook, &g_data);
 	mlx_hook(s->win, 2, 1, cub_key_hook, &g_data);
 	mlx_hook(s->win, 17, 1L << 5, cub_close, &g_data);
 	mlx_loop(s->mlx);

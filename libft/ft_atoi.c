@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/06 07:29:43 by minckim           #+#    #+#             */
-/*   Updated: 2020/04/06 15:32:31 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/16 13:00:17 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@ int		ft_atoi(const char *str)
 	int	sign;
 	int	res;
 
+	if (!str)
+		return 0;
 	res = 0;
 	sign = 1;
 	while ((9 <= *str && *str <= 13) || *str == 32)

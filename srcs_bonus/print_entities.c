@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 01:10:58 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/16 07:22:37 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/16 08:21:31 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_list	*item_to_list(t_gamedata *g_data)
 	return (head);
 }
 
-void	print_entity_list(t_screen *s, t_list **lst_ent, int odd)
+void	print_entity_list(t_screen *s, t_list **lst_ent, int odd, int (*f)())
 {
 	t_list	*curr;
 	t_list	*prev;
@@ -50,19 +50,11 @@ void	print_entity_list(t_screen *s, t_list **lst_ent, int odd)
 	prev = 0;
 	while (curr)
 	{
-		if (screen_entity(s, curr->content, odd))
+		if (f(s, curr->content, odd) && prev)
 		{
-			if (prev)
-			{
-				prev->next = curr->next;
-				ft_lstadd_front(lst_ent, curr);
-				curr = prev->next;
-			}
-			else
-			{
-				prev = curr;
-				curr = curr->next;
-			}
+			prev->next = curr->next;
+			ft_lstadd_front(lst_ent, curr);
+			curr = prev->next;
 		}
 		else
 		{
@@ -74,10 +66,13 @@ void	print_entity_list(t_screen *s, t_list **lst_ent, int odd)
 
 void	print_entities(t_gamedata *g_data, int odd)
 {
-	static t_list	*ent;
+	static t_list	*lst_ent;
+	static t_list	*lst_item;
 
-	if (!ent)
-		ent = entity_to_list(g_data);
-	print_entity_list(&g_data->screen, &ent, odd);
-
+	if (!lst_ent)
+		lst_ent = entity_to_list(g_data);
+	if (!lst_item)
+		lst_item = item_to_list(g_data);
+	print_entity_list(&g_data->screen, &lst_ent, odd, screen_entity);
+	print_entity_list(&g_data->screen, &lst_item, odd, screen_item);
 }

@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 23:50:17 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/14 05:22:46 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/17 12:42:47 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,21 @@ int		parse_color(char **words)
 	int		i;
 	int		color;
 
+	ft_printf("parsing color...");
 	if (!words[1])
-		exit_message("%s", "Missing factor: screen resolution x");
+		exit_message("%s", "Missing factor: color info");
 	color_a = ft_split(words[1], ',');
+	if (!color_a[0])
+		exit_message("%s", "Missing factor: color R");
+	if (!color_a[1])
+		exit_message("%s", "Missing factor: color G");
+	if (!color_a[2])
+		exit_message("%s", "Missing factor: color B");
 	color = 0;
 	i = -1;
+	ft_printf("[%s]", color_a[0]);
+	ft_printf("[%s]", color_a[1]);
+	ft_printf("[%s]\n", color_a[2]);
 	while (++i < 3)
 		color += (ft_atoi(color_a[i])) << (i * 8);
 	return (color);
@@ -33,6 +43,7 @@ void	parse_res(t_gamedata *g_data, char **words)
 	int	rx;
 	int	ry;
 
+	ft_printf("parsing resolution...\n");
 	if (!words[1])
 		exit_message("%s", "Missing factor: screen res x");
 	if (!words[2])
@@ -44,9 +55,8 @@ void	parse_res(t_gamedata *g_data, char **words)
 
 void	put_data(t_gamedata *g_data, char **words, int i, char **specifier)
 {
-	if ((i == TEXTURE_FLOOR || i == TEXTURE_CEILLING) && !BONUS)
-		(g_data->color)[i - TEXTURE_FLOOR] = parse_color(words);
-	else if (i == RESOLUTION)
+	ft_printf("parsing info: %s...\n", specifier[i]);
+	if (i == RESOLUTION)
 		parse_res(g_data, words);
 	else if (!((g_data->texture)[i] = bitmap_new(words[1])))
 		exit_message("Wrong path: %s", specifier[i]);

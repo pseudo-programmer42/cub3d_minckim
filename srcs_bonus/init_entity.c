@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 22:42:34 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/16 00:20:58 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/16 10:05:39 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,15 @@ void	init_player(t_gamedata *g_data)
 void	init_entity(t_gamedata *g, char **map_arr)
 {
 	g->wall = create_wall(g->texture);
-	g->floor = create_floor_ceilling(g->color);
+	g->floor = create_floor_ceilling(g->texture);
 	g->sprite = create_sprite(g->texture);
 	g->non = create_non();
 	g->wall.origin = vec_new(0, 0, 0);
 	g->floor.origin = vec_new(0, 0, 0);
 	g->sprite.origin = vec_new(0, 0, 0);
+	g->wall.type = TYPE_WALL;
+	g->floor.type = TYPE_FLOOR;
+	g->sprite.type = TYPE_SPRITE;
 	g->n_item = 0;
 	g->entity = (t_entity**)malloc(sizeof(t_entity*) * g->size_x);
 	copy_entities(map_arr, g);

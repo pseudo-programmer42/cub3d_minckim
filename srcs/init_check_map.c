@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 19:39:12 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/14 03:31:50 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/17 12:35:29 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,17 @@ int		check_row(char **map)
 	while (*map)
 	{
 		tmp = *map;
+		// ft_printf("[%p]\n[%s]\n", tmp, tmp);
 		while (*tmp && *tmp == ' ')
 			tmp++;
 		while (*tmp)
 		{
 			if (*(tmp) != '1')
+			{
+
+				ft_printf(">>[%p | %c]\n", tmp, *tmp);
 				return (0);
+			}
 			while (*tmp && *tmp != ' ')
 				tmp++;
 			if (*(tmp - 1) != '1')
@@ -81,6 +86,7 @@ int		check_col(char **map, int mx_i, int mx_j)
 
 int		check_map(char **map, t_gamedata *g_data)
 {
+
 	size_map(map, &g_data->size_x, &g_data->size_y);
 	if (check_row(map) && check_col(map, g_data->size_x, g_data->size_y))
 		return (1);

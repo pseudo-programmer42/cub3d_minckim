@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:49:13 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/16 03:12:52 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/16 08:57:11 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ typedef struct	s_gamedata{
 	t_entity	sprite;
 	t_entity	non;
 	t_entity	**entity;
+	t_list		*lst_ent;
+	t_list		*lst_item;
 	t_entity	item[10];
 	t_player	player;
 	t_screen	screen;
@@ -102,6 +104,11 @@ t_entity		create_non(void);
 /*
 **	print_entities.c-----------------------------------------------------------
 */
+void			print_entity_list(t_screen *s, t_list **lst_ent, int odd, \
+				int (*f)());
+t_list			*entity_to_list(t_gamedata *g_data);
+t_list			*item_to_list(t_gamedata *g_data);
+
 void			print_entities(t_gamedata *g_data, int odd);
 /*
 **	player_manage.c------------------------------------------------------------
