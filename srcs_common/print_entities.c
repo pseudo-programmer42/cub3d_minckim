@@ -6,11 +6,11 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 01:10:58 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/16 08:21:31 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/18 14:55:41 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_common.h"
 
 t_list	*entity_to_list(t_gamedata *g_data)
 {
@@ -18,6 +18,7 @@ t_list	*entity_to_list(t_gamedata *g_data)
 	int		i;
 	int		j;
 
+	head = 0;
 	i = -1;
 	while (++i < g_data->size_x)
 	{
@@ -33,6 +34,7 @@ t_list	*item_to_list(t_gamedata *g_data)
 	t_list	*head;
 	int		i;
 
+	head = 0;
 	i = -1;
 	while (++i < g_data->n_item)
 	{
@@ -41,7 +43,7 @@ t_list	*item_to_list(t_gamedata *g_data)
 	return (head);
 }
 
-void	print_entity_list(t_screen *s, t_list **lst_ent, int odd, int (*f)())
+void	print_entity_list(t_screen *s, t_list **lst_ent, int (*f)())
 {
 	t_list	*curr;
 	t_list	*prev;
@@ -50,7 +52,7 @@ void	print_entity_list(t_screen *s, t_list **lst_ent, int odd, int (*f)())
 	prev = 0;
 	while (curr)
 	{
-		if (f(s, curr->content, odd) && prev)
+		if (f(s, curr->content) && prev)
 		{
 			prev->next = curr->next;
 			ft_lstadd_front(lst_ent, curr);
@@ -64,7 +66,7 @@ void	print_entity_list(t_screen *s, t_list **lst_ent, int odd, int (*f)())
 	}
 }
 
-void	print_entities(t_gamedata *g_data, int odd)
+void	print_entities(t_gamedata *g_data)
 {
 	static t_list	*lst_ent;
 	static t_list	*lst_item;
@@ -73,6 +75,6 @@ void	print_entities(t_gamedata *g_data, int odd)
 		lst_ent = entity_to_list(g_data);
 	if (!lst_item)
 		lst_item = item_to_list(g_data);
-	print_entity_list(&g_data->screen, &lst_ent, odd, screen_entity);
-	print_entity_list(&g_data->screen, &lst_item, odd, screen_item);
+	print_entity_list(&g_data->screen, &lst_ent, screen_entity);
+	print_entity_list(&g_data->screen, &lst_item, screen_item);
 }

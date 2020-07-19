@@ -6,29 +6,29 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:54:52 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/16 11:06:53 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/19 11:54:37 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 int		refresh(t_gamedata *g_data)
 {
 	clock_t		frame_start;
 	t_screen	*s;
 	t_player	*p;
-	static int	odd;
 
 	p = &(g_data->player);
 	s = &(g_data->screen);
 	s->origin = p->origin;
-	s->origin.z += EYE_LEVEL;
+	s->origin.z = p->crouch ? EYE_LEVEL / 2 : s->origin.z + EYE_LEVEL;
 	s->h = p->h;
 	s->v = p->v;
 	frame_start = clock();
+	player_jump(p);
 	refresh_screen(s);
-	odd = odd ? 0 : 1;
-	print_entities(g_data, odd);
+	s->odd = s->odd ? 0 : 1;
+	print_entities(g_data);
 	mlx_put_image_to_window(s->mlx, s->win, s->img.img, 0, 0);
 	print_fps(frame_start, s);
 	return (1);
@@ -40,29 +40,28 @@ int		print_key(int key)
 	return (0);
 }
 
-int		cub_close(t_gamedata *g_data, int key)
+int		cub_close(t_gamedata *g_data, long long *keys)
 {
-	if (key != KEY_ESC)
+	if (!is_pressed(KEY_ESC, keys))
 		return (0);
-	key = 0;
-	g_data++;
+	(void)g_data;
 	ft_printf("bye\n");
-	exit(1);
+	exit(0);
 }
 
-int		cub_key_hook(int key, t_gamedata *g_data)
+int		play_game(t_gamedata *g_data)
 {
 	t_screen	*s;
 	t_player	*p;
 
 	s = &(g_data->screen);
 	p = &(g_data->player);
-	player_turn(p, key);
-	player_move(g_data, key, g_data->player.run);
-	player_fly(p, key);
-	cub_close(g_data, key);
-	if (key == KEY_SHF)
-		p->run = p->run == 1 ? 0 : 1;
+	player_turn(p, g_data->keys);
+	player_move(g_data, g_data->keys);
+	player_catch_jump(p, g_data->keys);
+	player_catch_crouch(p, g_data->keys);
+	cub_close(g_data, g_data->keys);
+	refresh(g_data);
 	return (1);
 }
 
@@ -76,9 +75,10 @@ int		main(int argc, char **argv)
 	s = &g_data.screen;
 	refresh(&g_data);
 	save_screenshot(argc, argv, s);
-	mlx_loop_hook(s->mlx, refresh, &g_data);
-	mlx_hook(s->win, 2, 1, cub_key_hook, &g_data);
-	mlx_hook(s->win, 2, 1, cub_key_hook, &g_data);
+	mlx_hook(s->win, 2, 1, key_press_manager, g_data.keys);
+	mlx_hook(s->win, 3, 2, key_release_manager, g_data.keys);
+	mlx_loop_hook(s->mlx, play_game, &g_data);
+	mlx_hook(s->win, 6, 1L << 2, mouse_motion, &g_data);
 	mlx_hook(s->win, 17, 1L << 5, cub_close, &g_data);
 	mlx_loop(s->mlx);
 }

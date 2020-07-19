@@ -6,18 +6,17 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:54:52 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/16 13:13:14 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/18 18:30:50 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_common.h"
 
 int		refresh(t_gamedata *g_data)
 {
 	clock_t		frame_start;
 	t_screen	*s;
 	t_player	*p;
-	static int	odd;
 
 	p = &(g_data->player);
 	s = &(g_data->screen);
@@ -27,8 +26,8 @@ int		refresh(t_gamedata *g_data)
 	s->v = p->v;
 	frame_start = clock();
 	refresh_screen(s);
-	odd = odd ? 0 : 1;
-	print_entities(g_data, odd);
+	s->odd = s->odd ? 0 : 1;
+	print_entities(g_data);
 	mlx_put_image_to_window(s->mlx, s->win, s->img.img, 0, 0);
 	print_fps(frame_start, s);
 	return (1);
@@ -47,7 +46,7 @@ int		cub_close(t_gamedata *g_data, int key)
 	key = 0;
 	g_data++;
 	ft_printf("bye\n");
-	exit(1);
+	exit(0);
 }
 
 int		cub_key_hook(int key, t_gamedata *g_data)

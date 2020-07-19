@@ -6,11 +6,11 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 19:39:12 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/16 13:07:41 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/18 15:50:24 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 int		check_row(char **map)
 {
@@ -25,7 +25,6 @@ int		check_row(char **map)
 		{
 			if (*(tmp) != '1')
 			{
-				ft_printf("x");
 				return (0);
 			}
 			while (*tmp && *tmp != ' ')

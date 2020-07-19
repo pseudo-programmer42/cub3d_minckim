@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 05:15:47 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/14 00:06:50 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/18 18:41:27 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_entity	*entity_move(t_entity *e, t_vec *v)
 	return (e);
 }
 
-t_entity	*entity_rot(t_entity *e, t_real h, t_real v)
+t_entity	*entity_rot(t_entity *e, t_angle h, t_angle v)
 {
 	e->h += h;
 	e->h += v;

@@ -6,11 +6,11 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 01:13:40 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/16 02:51:06 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/18 15:20:44 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../srcs_common/cub3d_common.h"
 
 void	player_turn(t_player *player, int key)
 {

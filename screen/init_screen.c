@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 23:50:15 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/16 00:38:11 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/18 13:54:13 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_screen	init_screen(int rx, int ry, t_angle angle)
 	screen.distance = screen.rx / screen.tan_camera_angle_2;
 	screen.cos_cam = cos(angle / 2);
 	screen.pixel = pixel_init(&screen);
+	screen.odd = 0;
 	return (screen);
 }
 

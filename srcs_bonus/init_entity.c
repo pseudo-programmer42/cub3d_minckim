@@ -6,11 +6,11 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 22:42:34 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/16 10:05:39 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/19 10:48:54 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	copy_entities(char **map, t_gamedata *g)
 {
@@ -43,6 +43,8 @@ void	copy_entities(char **map, t_gamedata *g)
 void	init_player(t_gamedata *g_data)
 {
 	g_data->player.run = 0;
+	g_data->player.jump = 0;
+	g_data->player.crouch = 0;
 }
 
 void	init_entity(t_gamedata *g, char **map_arr)

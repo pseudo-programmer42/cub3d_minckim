@@ -6,11 +6,11 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 00:39:43 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/16 08:53:30 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/18 14:55:46 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_common.h"
 #define FILTER_SIZE 2
 
 double	fps_filter(double x)

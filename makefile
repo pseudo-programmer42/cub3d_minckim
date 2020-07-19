@@ -6,7 +6,7 @@
 #    By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/29 16:58:52 by minckim           #+#    #+#              #
-#    Updated: 2020/07/16 13:23:48 by minckim          ###   ########.fr        #
+#    Updated: 2020/07/19 10:09:59 by minckim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,34 +65,38 @@ GEOMETRY_NAME =\
 	entity.c\
 	geometry_print.c
 
-SRCS_DIR = ./srcs/
-SRCS_NAME =\
-	main.c\
+SRCS_COMMON_DIR = ./srcs_common/
+SRCS_COMMON_NAME =\
 	init.c\
-	init_parse_line.c\
 	init_util.c\
 	init_check_map.c\
-	init_entity.c\
-	init_create_entity.c\
-	player_manage.c\
 	print_entities.c\
-	put_fps.c
+	main.c\
+	put_fps.c\
+	init_entity.c\
+	init_parse_line.c\
+	init_create_entity.c\
+	player_manage.c
 
 SRCS_BONUS_DIR = ./srcs_bonus/
 SRCS_BONUS_NAME =\
-	main.c\
 	init.c\
-	init_parse_line.c\
 	init_util.c\
 	init_check_map.c\
+	print_entities.c\
+	main.c\
+	put_fps.c\
 	init_entity.c\
+	init_parse_line.c\
 	init_create_entity.c\
 	player_manage.c\
-	print_entities.c\
-	put_fps.c\
-	check_collision.c
+	check_collision.c\
+	jump.c\
+	crouch.c\
+	mouse_motion.c\
+	key_manager.c
 
-SRCS = $(addprefix $(SRCS_DIR),$(SRCS_NAME))\
+SRCS = $(addprefix $(SRCS_COMMON_DIR),$(SRCS_COMMON_NAME))\
 	$(addprefix $(SCREEN_DIR),$(SCREEN_NAME))\
 	$(addprefix $(LINEAR_DIR),$(LINEAR_NAME))\
 	$(addprefix $(BITMAP_DIR),$(BITMAP_NAME))\
@@ -109,7 +113,8 @@ OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 HEADERS = \
-	$(SRCS_DIR)cub3d.h\
+	$(SRCS_COMMON_DIR)cub3d_common.h\
+	$(SRCS_BONUS_DIR)cub3d_bonus.h\
 	$(SCREEN_DIR)screen.h\
 	$(LINEAR_DIR)linear_algebra.h\
 	$(BITMAP_DIR)bitmap.h\
@@ -120,7 +125,7 @@ HEADERS = \
 all : $(NAME)
 
 norm :
-	norminette $(SRCS) $(HEADERS)
+	norminette $(SRCS) $(HEADERS) $(addprefix $(SRCS_BONUS_DIR),$(SRCS_BONUS_NAME))
 
 test : $(OBJS_TEST) library
 	$(CC) $(FLAG) -o $(NAME) $(OBJS_TEST) \
@@ -157,7 +162,6 @@ $(LIBFT) :
 clean :
 	rm -rf $(OBJS) $(LIBFT)
 	make clean -C $(LIBFT_DIR)
-
 
 fclean :
 	rm -rf $(OBJS) $(OBJS_BONUS) $(LIBFT) $(NAME)

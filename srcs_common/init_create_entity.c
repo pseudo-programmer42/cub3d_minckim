@@ -6,11 +6,11 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 20:00:12 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/14 03:47:25 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/18 15:20:48 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../srcs_common/cub3d_common.h"
 
 t_entity	create_wall(t_bitmap **texture)
 {

@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 20:38:43 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/14 00:07:02 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/18 18:40:22 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_face	*face_move(t_face *f, t_vec *v)
 	return (f);
 }
 
-t_face	*face_rot(t_face *f, t_vec *center, t_real h, t_real v)
+t_face	*face_rot(t_face *f, t_vec *center, t_angle h, t_angle v)
 {
 	t_mat	mat_r;
 
@@ -70,7 +70,7 @@ t_face	*face_rot(t_face *f, t_vec *center, t_real h, t_real v)
 	return (f);
 }
 
-t_face	*face_rot_rc(t_face *f, t_vec *center, t_real h, t_real v)
+t_face	*face_rot_rc(t_face *f, t_vec *center, t_angle h, t_angle v)
 {
 	t_mat	mat_r;
 

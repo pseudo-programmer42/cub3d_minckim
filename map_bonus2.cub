@@ -4,8 +4,8 @@ NO ./texture/earth.bmp
 SO ./texture/shuttle.bmp
 WE ./texture/super.bmp
 EA ./texture/east.bmp
-F 10,10,10
-C 10,10,10
+F 220,100,0
+C 225,30,0
 
 
 1111

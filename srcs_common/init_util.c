@@ -6,11 +6,11 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 20:00:06 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/17 12:35:46 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/18 14:55:06 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_common.h"
 
 void	exit_message(char *err_massage, char *arg)
 {

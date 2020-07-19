@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:12:34 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/16 05:52:30 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/18 18:38:36 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct	s_screen{
 	t_img		img;
 	int			rx;
 	int			ry;
+	int			odd;
 	t_pixel		**pixel;
 	t_vec		origin;
 	t_angle		h;
@@ -55,7 +56,7 @@ typedef struct	s_screen{
 ** init_screen.c
 ** ============================================================================
 */
-t_screen		init_screen(int rx, int ry, t_real angle);
+t_screen		init_screen(int rx, int ry, t_angle angle);
 t_pixel			**pixel_init(t_screen *screen);
 void			mlx_pixel(t_img *img, int x, int y, int color);
 void			refresh_screen(t_screen *s);
@@ -64,7 +65,7 @@ void			refresh_screen(t_screen *s);
 ** screen_face.c
 ** ============================================================================
 */
-int				screen_face(t_screen *s, t_face *f, int odd);
+int				screen_face(t_screen *s, t_face *f);
 /*
 ** ============================================================================
 ** screen_face_util.c
@@ -79,8 +80,8 @@ int				set_boundary_f(t_screen *s, t_face *f, int *b, t_real *point);
 ** screen_entity.c
 ** ============================================================================
 */
-int				screen_entity(t_screen *s, t_entity *e, int odd);
-int				screen_item(t_screen *s, t_entity *e, int odd);
+int				screen_entity(t_screen *s, t_entity *e);
+int				screen_item(t_screen *s, t_entity *e);
 /*
 ** ============================================================================
 ** save_screenshot.c

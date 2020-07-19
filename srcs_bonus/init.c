@@ -6,11 +6,11 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 16:57:26 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/14 05:55:22 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/18 15:50:24 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 int		check_init_data(t_gamedata *g_data)
 {

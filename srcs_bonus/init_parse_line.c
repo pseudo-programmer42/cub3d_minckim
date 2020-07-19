@@ -6,11 +6,11 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 23:50:17 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/17 12:42:47 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/18 15:50:24 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 int		parse_color(char **words)
 {

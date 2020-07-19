@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 18:03:07 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/16 08:55:57 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/18 14:41:22 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	pixel_face(t_pixel *pixel, t_face *f)
 	pixel->distance = a.x;
 }
 
-int		screen_face(t_screen *s, t_face *f, int odd)
+int		screen_face(t_screen *s, t_face *f)
 {
 	int		boundary[4];
 	t_real	point[8];
@@ -58,8 +58,7 @@ int		screen_face(t_screen *s, t_face *f, int odd)
 		return (0);
 	i = boundary[1] - 2;
 	i = i % 2 ? i + 1 : i;
-	i += odd;
-	odd = 0;
+	i += s->odd;
 	while ((i += 2) < boundary[3])
 	{
 		j = boundary[0] - 1;

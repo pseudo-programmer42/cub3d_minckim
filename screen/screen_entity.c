@@ -6,13 +6,13 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:15:49 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/16 07:22:44 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/18 13:50:51 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "screen.h"
 
-int		screen_entity(t_screen *s, t_entity *e, int odd)
+int		screen_entity(t_screen *s, t_entity *e)
 {
 	int		i;
 	t_face	tmp;
@@ -32,14 +32,14 @@ int		screen_entity(t_screen *s, t_entity *e, int odd)
 		mat_vec(&mat_r, &(tmp.v));
 		mat_vec(&mat_r, &(tmp.n));
 		face_move(&tmp, &(e->origin));
-		visible += screen_face(s, &tmp, odd);
+		visible += screen_face(s, &tmp);
 	}
 	if (visible)
 		return (1);
 	return (0);
 }
 
-int		screen_item(t_screen *s, t_entity *e, int odd)
+int		screen_item(t_screen *s, t_entity *e)
 {
 	int			i;
 	t_entity	copied_e;
@@ -61,7 +61,7 @@ int		screen_item(t_screen *s, t_entity *e, int odd)
 		mat_vec(&mat_r, &(tmp.v));
 		mat_vec(&mat_r, &(tmp.n));
 		face_move(&tmp, &(e->origin));
-		visible += screen_face(s, &tmp, odd);
+		visible += screen_face(s, &tmp);
 	}
 	if (visible)
 		return (1);

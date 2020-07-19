@@ -6,12 +6,11 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 09:00:10 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/16 11:17:05 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/18 18:18:13 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-
+#include "cub3d_bonus.h"
 
 void	pick_neighbors(t_entity *w, t_vec *m, t_gamedata *g_data)
 {
@@ -44,21 +43,21 @@ int		is_point_in(t_vec *v, t_entity *e)
 
 	is_in = 0;
 	i = 0;
-		if (e->type == TYPE_WALL)
-			if ((e->origin.x) - WALL_WIDTH < v->x \
-			&& v->x < e->origin.x + WALL_WIDTH \
-			&& (e->origin.y) - WALL_WIDTH < v->y \
-			&& v->y < e->origin.y + WALL_WIDTH)
-			{
-				return (1);
-			}
-		if (e->type == TYPE_SPRITE)
-			if ((v->x - e->origin.x) * (v->x - e->origin.x) \
-				+ (v->y - e->origin.y) * (v->y - e->origin.y) \
-				< WALL_WIDTH * WALL_WIDTH / 4)
-			{
-				return (1);
-			}
+	if (e->type == TYPE_WALL)
+		if ((e->origin.x) - WALL_WIDTH < v->x \
+		&& v->x < e->origin.x + WALL_WIDTH \
+		&& (e->origin.y) - WALL_WIDTH < v->y \
+		&& v->y < e->origin.y + WALL_WIDTH)
+		{
+			return (1);
+		}
+	if (e->type == TYPE_SPRITE)
+		if ((v->x - e->origin.x) * (v->x - e->origin.x) \
+			+ (v->y - e->origin.y) * (v->y - e->origin.y) \
+			< WALL_WIDTH * WALL_WIDTH / 4)
+		{
+			return (1);
+		}
 	return (0);
 }
 

@@ -6,11 +6,11 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 22:42:34 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/16 00:20:58 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/18 15:22:10 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../srcs_common/cub3d_common.h"
 
 void	copy_entities(char **map, t_gamedata *g)
 {
