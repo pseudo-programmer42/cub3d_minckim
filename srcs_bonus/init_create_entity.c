@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 20:00:12 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/18 15:50:24 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/20 13:30:40 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ t_entity	create_wall(t_bitmap **texture)
 	face_rot(&(wall.face[1]), &z, M_PI / 2, 0);
 	face_rot(&(wall.face[2]), &z, M_PI, 0);
 	face_rot(&(wall.face[3]), &z, M_PI * 3 / 2, 0);
-	wall.face[0].img = texture[TEXTURE_EAST];
-	wall.face[1].img = texture[TEXTURE_NORTH];
-	wall.face[2].img = texture[TEXTURE_WEST];
-	wall.face[3].img = texture[TEXTURE_SOUTH];
+	wall.face[0].img = texture[IMG_EAST];
+	wall.face[1].img = texture[IMG_NORTH];
+	wall.face[2].img = texture[IMG_WEST];
+	wall.face[3].img = texture[IMG_SOUTH];
 	return (wall);
 }
 
@@ -50,6 +50,7 @@ t_entity	create_floor_ceilling(t_bitmap **texture)
 	t_vec		z;
 
 	ft_memset(&floor, 0, sizeof(t_entity));
+	floor.type = TYPE_FLOOR;
 	floor.n_face = 2;
 	floor.face = (t_face*)malloc(sizeof(t_face) * 2);
 	a = vec_new(-WALL_WIDTH / 2, -WALL_WIDTH / 2, 0);
@@ -59,12 +60,12 @@ t_entity	create_floor_ceilling(t_bitmap **texture)
 	floor.face[0] = face_new(&a, &b, &c, RECTANGLE);
 	floor.face[1] = floor.face[0];
 	face_rot(floor.face + 1, &z, 0, M_PI);
-	floor.face[0].img = texture[TEXTURE_FLOOR];
-	floor.face[1].img = texture[TEXTURE_CEILLING];
+	floor.face[0].img = texture[IMG_FLOOR];
+	floor.face[1].img = texture[IMG_CEILLING];
 	return (floor);
 }
 
-t_entity	create_sprite(t_bitmap **texture)
+t_entity	create_sprite(t_bitmap **texture, int type)
 {
 	t_entity	sprite;
 	t_vec		a;
@@ -78,7 +79,13 @@ t_entity	create_sprite(t_bitmap **texture)
 	b = vec_new(0, 500, 0);
 	c = vec_new(0, -200, 2000);
 	sprite.face[0] = face_new(&a, &b, &c, RECTANGLE);
-	sprite.face[0].img = texture[TEXTURE_SPRITE];
+	sprite.type = type;
+	if (type == TYPE_SPRITE_AP)
+		sprite.face[0].img = texture[IMG_SPRITE_AP];
+	if (type == TYPE_SPRITE_AN)
+		sprite.face[0].img = texture[IMG_SPRITE_AN];
+	if (type == TYPE_SPRITE_42)
+		sprite.face[0].img = texture[IMG_SPRITE_42];
 	return (sprite);
 }
 

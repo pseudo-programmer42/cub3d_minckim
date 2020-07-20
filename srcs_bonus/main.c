@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:54:52 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/19 11:54:37 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/20 10:39:02 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ int		refresh(t_gamedata *g_data)
 	refresh_screen(s);
 	s->odd = s->odd ? 0 : 1;
 	print_entities(g_data);
-	mlx_put_image_to_window(s->mlx, s->win, s->img.img, 0, 0);
 	print_fps(frame_start, s);
+	screen_hud(s, g_data);
+	mlx_put_image_to_window(s->mlx, s->win, s->img.img, 0, 0);
 	return (1);
 }
 
@@ -79,6 +80,7 @@ int		main(int argc, char **argv)
 	mlx_hook(s->win, 3, 2, key_release_manager, g_data.keys);
 	mlx_loop_hook(s->mlx, play_game, &g_data);
 	mlx_hook(s->win, 6, 1L << 2, mouse_motion, &g_data);
+	mlx_mouse_hook(s->win, mouse_press, &g_data);
 	mlx_hook(s->win, 17, 1L << 5, cub_close, &g_data);
 	mlx_loop(s->mlx);
 }

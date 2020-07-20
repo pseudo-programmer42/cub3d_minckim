@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 01:10:58 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/18 19:52:51 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/20 12:47:36 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,6 @@ void	print_entity_list(t_screen *s, t_list **lst_ent, int (*f)())
 
 void	print_entities(t_gamedata *g_data)
 {
-	static t_list	*lst_ent;
-	static t_list	*lst_item;
-
-	if (!lst_ent)
-		lst_ent = entity_to_list(g_data);
-	if (!lst_item)
-		lst_item = item_to_list(g_data);
-	print_entity_list(&g_data->screen, &lst_ent, screen_entity);
-	print_entity_list(&g_data->screen, &lst_item, screen_item);
+	print_entity_list(&g_data->screen, &g_data->lst_ent, screen_entity);
+	print_entity_list(&g_data->screen, &g_data->lst_item, screen_item);
 }

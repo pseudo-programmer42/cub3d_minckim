@@ -6,7 +6,7 @@
 #    By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/29 16:58:52 by minckim           #+#    #+#              #
-#    Updated: 2020/07/19 10:09:59 by minckim          ###   ########.fr        #
+#    Updated: 2020/07/20 10:29:45 by minckim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SCREEN_NAME = \
 	screen_entity.c\
 	screen_face.c\
 	screen_face_util.c\
+	screen_bitmap.c\
 	save_screenshot.c
 
 LINEAR_DIR = ./linear_algebra/
@@ -94,6 +95,9 @@ SRCS_BONUS_NAME =\
 	jump.c\
 	crouch.c\
 	mouse_motion.c\
+	hud.c\
+	hud_lifebar.c\
+	hud_stand_crouch.c\
 	key_manager.c
 
 SRCS = $(addprefix $(SRCS_COMMON_DIR),$(SRCS_COMMON_NAME))\

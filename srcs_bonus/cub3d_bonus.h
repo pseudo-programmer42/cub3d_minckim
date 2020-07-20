@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:49:13 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/19 10:47:18 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/20 13:29:52 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,26 @@
 # include "../screen/screen.h"
 # include "../libft/libft.h"
 # include "key.h"
-# define TEXTURE_SPECIFIER "EA NO WE SO F C S R"
-# define N_TEXTURE 8
+# define IMG_SPECIFIER "R EA NO WE SO F C AP 42 AN LB CR ST"
+# define N_IMG 13
 # define TYPE_FLOOR 0
 # define TYPE_WALL 1
-# define TYPE_SPRITE 2
-# define TEXTURE_EAST 0
-# define TEXTURE_NORTH 1
-# define TEXTURE_WEST 2
-# define TEXTURE_SOUTH 3
-# define TEXTURE_FLOOR 4
-# define TEXTURE_CEILLING 5
-# define TEXTURE_SPRITE 6
-# define RESOLUTION 7
-# define BONUS 0
+# define TYPE_SPRITE_AP 2
+# define TYPE_SPRITE_42 3
+# define TYPE_SPRITE_AN 4
+# define RESOLUTION 0
+# define IMG_EAST 1
+# define IMG_NORTH 2
+# define IMG_WEST 3
+# define IMG_SOUTH 4
+# define IMG_FLOOR 5
+# define IMG_CEILLING 6
+# define IMG_SPRITE_AP 7
+# define IMG_SPRITE_42 8
+# define IMG_SPRITE_AN 9
+# define IMG_LIFEBAR 10
+# define IMG_CROUCH 11
+# define IMG_STAND 12
 # define CEILLING_HEIGHT 4000
 # define WALL_WIDTH 3000
 # define EYE_LEVEL 1700
@@ -43,7 +49,8 @@
 # define MOVE_RUN 1000
 # define JUMP_HEIGHT 1000
 # define JUMP_DUL 1
-# define TIME_SEGMENT 0.01
+# define TIME_SEGMENT 0.001
+# define LIFE_MAX 100
 
 typedef struct	s_player{
 	t_vec		origin;
@@ -52,24 +59,30 @@ typedef struct	s_player{
 	int			run;
 	int			jump;
 	int			crouch;
+	int			life;
 }				t_player;
 
 typedef struct	s_gamedata{
 	int			n_entity;
+	int			n_sprite_ap;
+	int			n_sprite_42;
+	int			n_sprite_an;
 	int			n_item;
 	int			size_x;
 	int			size_y;
-	t_bitmap	*texture[N_TEXTURE];
+	t_bitmap	*texture[N_IMG];
 	int			color[2];
 	long long	keys[6];
 	t_entity	floor;
 	t_entity	wall;
-	t_entity	sprite;
+	t_entity	sprite_ap;
+	t_entity	sprite_42;
+	t_entity	sprite_an;
 	t_entity	non;
 	t_entity	**entity;
 	t_list		*lst_ent;
 	t_list		*lst_item;
-	t_entity	item[10];
+	t_entity	item[20];
 	t_player	player;
 	t_screen	screen;
 }				t_gamedata;
@@ -107,7 +120,7 @@ void			print_fps(clock_t fram_start, t_screen *s);
 */
 t_entity		create_wall(t_bitmap **texture);
 t_entity		create_floor_ceilling(t_bitmap **texture);
-t_entity		create_sprite(t_bitmap **texture);
+t_entity		create_sprite(t_bitmap **texture, int type);
 t_entity		create_non(void);
 /*
 **	init_entity.c--------------------------------------------------------------
@@ -149,4 +162,17 @@ int				mouse_motion(int a, int b, t_gamedata *g_data);
 int				key_press_manager(int key, long long *keys);
 int				key_release_manager(int key, long long *keys);
 int				is_pressed(int key, long long *keys);
+int				mouse_press(int button, int x, int y, t_gamedata *g_data);
+/*
+**	hud.c------------------------------------------------------------
+*/
+void			screen_hud(t_screen *s, t_gamedata *g_data);
+/*
+**	hud_lifebar.c------------------------------------------------------------
+*/
+void			screen_lifebar(t_screen *s, t_bitmap *b, t_player *p);
+/*
+**	hud_stand_crouch.c---------------------------------------------------------
+*/
+void			screen_stand_crouch(t_screen *s, t_gamedata *g_data);
 #endif

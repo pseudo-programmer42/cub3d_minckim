@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/19 09:56:23 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/19 12:05:45 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/20 13:31:27 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,11 @@ int		is_pressed(int key, long long *keys)
 		return (1);
 	else
 		return (0);
+}
+
+int		mouse_press(int button, int x, int y, t_gamedata *g_data)
+{
+	(void)g_data;
+	ft_printf("button: %d | %d %d\n", button, x, y);
+	return (0);
 }

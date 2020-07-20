@@ -1,12 +1,16 @@
 R 900 600
-S ./texture/sprite.bmp
-NO ./texture/earth.bmp
-SO ./texture/shuttle.bmp
-WE ./texture/super.bmp
-EA ./texture/east.bmp
-F ./texture/shuttle.bmp
-C ./texture/super.bmp
-
+NO ./texture/win7.bmp
+SO ./texture/win10.bmp
+WE ./texture/win98.bmp
+EA ./texture/winxp.bmp
+F ./texture/super.bmp
+C ./texture/cloud.bmp
+42 ./texture/42logo.bmp
+AN ./texture/android.bmp
+AP ./texture/apple.bmp
+LB ./texture/lifebar.bmp
+CR ./texture/crouch.bmp
+ST ./texture/stand.bmp
 
 11111111111111111111111
 10000010000000000000001
@@ -17,19 +21,19 @@ C ./texture/super.bmp
 10000010000111111111001
 11111110000000000000001
 10000000000000000000001
-10000010000111111111001
+10020010000111111111001
 11111110000000000000001
       10200000000000001
       10000111111111001
-      10200000000000001
+      10300000000000001
       10000000000000001
-      10200111111111001
-      10000000000000001
-      10000000000000001
-      10000111111111001
+      10400111111111001
       10000000000000001
       10000000000000001
       10000111111111001
+      10000000000020001
       10000000000000001
-      10000000000000001
+      10000111111111001
+      10000000000003001
+      10000000200000001
       11111111111111111

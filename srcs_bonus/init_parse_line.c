@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 23:50:17 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/18 15:50:24 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/20 10:37:02 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int		parse_info(t_gamedata *g_data, char *line)
 	if (!(*line))
 		return (0);
 	if (!(specifier))
-		specifier = ft_split(TEXTURE_SPECIFIER, ' ');
+		specifier = ft_split(IMG_SPECIFIER, ' ');
 	words = ft_split(line, ' ');
 	i = 0;
 	while (specifier[i])
@@ -95,7 +95,7 @@ void	parse_map(char *line, t_list **map)
 	line_tmp = line;
 	while (*line_tmp)
 	{
-		if (ft_strchr("012NEWS ", *line_tmp) == 0)
+		if (ft_strchr("0123456NEWS ", *line_tmp) == 0)
 			exit_message("Wrong character(%.1s) in the map data.", line_tmp);
 		line_tmp++;
 	}

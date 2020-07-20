@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 09:00:10 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/18 18:18:13 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/20 13:08:18 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ int		is_point_in(t_vec *v, t_entity *e)
 	is_in = 0;
 	i = 0;
 	if (e->type == TYPE_WALL)
-		if ((e->origin.x) - WALL_WIDTH < v->x \
-		&& v->x < e->origin.x + WALL_WIDTH \
-		&& (e->origin.y) - WALL_WIDTH < v->y \
-		&& v->y < e->origin.y + WALL_WIDTH)
+		if ((e->origin.x) - WALL_WIDTH / 2 < v->x \
+		&& v->x < e->origin.x + WALL_WIDTH / 2 \
+		&& (e->origin.y) - WALL_WIDTH / 2 < v->y \
+		&& v->y < e->origin.y + WALL_WIDTH / 2)
 		{
 			return (1);
 		}
-	if (e->type == TYPE_SPRITE)
+	if (e->type == TYPE_SPRITE_AN)
 		if ((v->x - e->origin.x) * (v->x - e->origin.x) \
 			+ (v->y - e->origin.y) * (v->y - e->origin.y) \
 			< WALL_WIDTH * WALL_WIDTH / 4)
@@ -66,6 +66,7 @@ int		check_collision(t_gamedata *g_data, t_vec *m)
 	t_vec		tmp;
 	t_entity	walls[9];
 	int			i;
+	t_list		*lst_item;
 
 	tmp = *m;
 	vec_add(&tmp, &g_data->player.origin);
@@ -73,10 +74,16 @@ int		check_collision(t_gamedata *g_data, t_vec *m)
 	i = -1;
 	while (++i < 9)
 		if (is_point_in(&tmp, &walls[i]))
+		{
 			return (1);
+		}
 	i = -1;
-	while (++i < g_data->n_item)
-		if (is_point_in(&tmp, &g_data->item[i]))
+	lst_item = g_data->lst_item;
+	while (lst_item)
+	{
+		if (is_point_in(&tmp, lst_item->content))
 			return (1);
+		lst_item = lst_item->next;
+	}
 	return (0);
 }

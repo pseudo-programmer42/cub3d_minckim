@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 16:57:26 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/18 15:50:24 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/20 10:37:51 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,12 @@ int		check_init_data(t_gamedata *g_data)
 	char	**words;
 	int		i;
 
-	words = ft_split(TEXTURE_SPECIFIER, ' ');
+	words = ft_split(IMG_SPECIFIER, ' ');
 	i = -1;
-	while (++i < N_TEXTURE)
-		if ((g_data->texture)[i] == 0)
+	while (++i < N_IMG)
+		if ((g_data->texture)[i] == 0 && i != RESOLUTION)
 		{
-			if (!BONUS)
-			{
-				if ((i == TEXTURE_FLOOR || i == TEXTURE_CEILLING))
-					continue ;
-			}
-			else
-				exit_message("Texture loading failed: %s", words[i]);
+			exit_message("Texture loading failed: %s", words[i]);
 		}
 	split_del(words);
 	return (1);

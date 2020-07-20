@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 18:03:07 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/18 14:41:22 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/19 15:54:38 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ void	pixel_face(t_pixel *pixel, t_face *f)
 	{
 		color = bitmap_pixel_color(f->img, a.y * ((t_bitmap*)(f->img))->width,\
 		a.z * ((t_bitmap*)(f->img))->height);
-		*(pixel->color) = color == 0x00ffffff ? *(pixel->color) : color;
+		if (color == 0x00ffffff)
+			return ;
+		*(pixel->color) = color;
 	}
 	else
 		*(pixel->color) = (f->color);
