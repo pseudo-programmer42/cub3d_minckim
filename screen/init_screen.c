@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 23:50:15 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/18 13:54:13 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/22 18:06:53 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ t_screen	init_screen(int rx, int ry, t_angle angle)
 	screen.origin = vec_new(0, 0, 0);
 	screen.h = 0;
 	screen.v = 0;
-	screen.rx = rx;
-	screen.ry = ry;
+	screen.rx = rx < MAX_RX ? rx : MAX_RX;
+	screen.ry = ry < MAX_RY ? ry : MAX_RY;
 	screen.mlx = mlx_init();
 	screen.win = mlx_new_window(screen.mlx, rx, ry, "cub3d_minckim");
 	img = &(screen.img);

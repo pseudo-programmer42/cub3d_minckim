@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 00:39:43 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/18 15:50:24 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/20 17:32:39 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*frame_string(clock_t frame_start)
 
 void	print_fps(clock_t frame_start, t_screen *s)
 {
-	char			*s1;
+	char	*s1;
 
 	s1 = frame_string(frame_start);
 	mlx_string_put(s->mlx, s->win, 10, 10, 0x00FFFF00, s1);

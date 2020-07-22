@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:49:13 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/20 13:29:52 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/22 16:58:09 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@
 # include "../screen/screen.h"
 # include "../libft/libft.h"
 # include "key.h"
-# define IMG_SPECIFIER "R EA NO WE SO F C AP 42 AN LB CR ST"
-# define N_IMG 13
 # define TYPE_FLOOR 0
 # define TYPE_WALL 1
 # define TYPE_SPRITE_AP 2
 # define TYPE_SPRITE_42 3
 # define TYPE_SPRITE_AN 4
+# define TYPE_DOOR 5
+# define N_IMG 21
+# define IMG_SPECIFIER "R EA NO WE SO F C A0 A1 A2 B0 B1 B2 C0 C1 C2 D E G H I"
 # define RESOLUTION 0
 # define IMG_EAST 1
 # define IMG_NORTH 2
@@ -34,12 +35,20 @@
 # define IMG_SOUTH 4
 # define IMG_FLOOR 5
 # define IMG_CEILLING 6
-# define IMG_SPRITE_AP 7
-# define IMG_SPRITE_42 8
-# define IMG_SPRITE_AN 9
-# define IMG_LIFEBAR 10
-# define IMG_CROUCH 11
-# define IMG_STAND 12
+# define IMG_AP_0 7
+# define IMG_AP_1 8
+# define IMG_AP_2 9
+# define IMG_42_0 10
+# define IMG_42_1 11
+# define IMG_42_2 12
+# define IMG_AN_0 13
+# define IMG_AN_1 14
+# define IMG_AN_2 15
+# define IMG_DO 16
+# define IMG_SD 17
+# define IMG_LIFEBAR 18
+# define IMG_CROUCH 19
+# define IMG_STAND 20
 # define CEILLING_HEIGHT 4000
 # define WALL_WIDTH 3000
 # define EYE_LEVEL 1700
@@ -78,10 +87,13 @@ typedef struct	s_gamedata{
 	t_entity	sprite_ap;
 	t_entity	sprite_42;
 	t_entity	sprite_an;
+	t_entity	door;
+	t_entity	secret_door;
 	t_entity	non;
 	t_entity	**entity;
 	t_list		*lst_ent;
 	t_list		*lst_item;
+	t_list		*lst_door;
 	t_entity	item[20];
 	t_player	player;
 	t_screen	screen;
@@ -121,6 +133,7 @@ void			print_fps(clock_t fram_start, t_screen *s);
 t_entity		create_wall(t_bitmap **texture);
 t_entity		create_floor_ceilling(t_bitmap **texture);
 t_entity		create_sprite(t_bitmap **texture, int type);
+t_entity		create_door(t_bitmap **texture);
 t_entity		create_non(void);
 /*
 **	init_entity.c--------------------------------------------------------------
@@ -142,6 +155,7 @@ void			player_fly(t_player *player, long long *key);
 **	check_collision.c----------------------------------------------------------
 */
 int				check_collision(t_gamedata *g_data, t_vec *m);
+int				is_point_in(t_vec *v, t_entity *e);
 /*
 **	jump.c---------------------------------------------------------------------
 */
@@ -175,4 +189,19 @@ void			screen_lifebar(t_screen *s, t_bitmap *b, t_player *p);
 **	hud_stand_crouch.c---------------------------------------------------------
 */
 void			screen_stand_crouch(t_screen *s, t_gamedata *g_data);
+/*
+**	item_interaction.c--------------------------------------------------------
+*/
+int				toxic_apple(t_gamedata *g, t_screen *s, t_entity *item);
+int				healing_42(t_gamedata *g, t_screen *s, t_entity *item);
+void			item_interaction(t_gamedata *g, t_screen *s, int (*f)());
+/*
+**	player_dead.c--------------------------------------------------------
+*/
+void			dead(t_player *p, t_screen *s);
+/*
+**	player_door.c--------------------------------------------------------
+*/
+int				check_collision_door(t_gamedata *g_data, t_vec *m);
+void			player_opendoor(t_gamedata *g);
 #endif

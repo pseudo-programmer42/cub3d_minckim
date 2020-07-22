@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 18:03:07 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/19 15:54:38 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/22 17:24:04 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	pixel_face(t_pixel *pixel, t_face *f)
 		if (color == 0x00ffffff)
 			return ;
 		*(pixel->color) = color;
+		pixel_brighten(pixel, 1 / a.x * 15000 > 1 ? 1 : 1 / a.x * 15000);
 	}
 	else
 		*(pixel->color) = (f->color);
@@ -54,7 +55,7 @@ int		screen_face(t_screen *s, t_face *f)
 
 	face_rot_rc(f, &(s->origin), s->h, s->v);
 	near_distance = set_distance(f);
-	if (f->n.x > s->cos_cam)
+	if (f->n.x > s->cos_cam && f->side == SIDE_SINGLE)
 		return (0);
 	if (set_boundary_f(s, f, boundary, point) == 0)
 		return (0);

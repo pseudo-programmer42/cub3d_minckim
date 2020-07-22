@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/29 16:58:52 by minckim           #+#    #+#              #
-#    Updated: 2020/07/20 10:29:45 by minckim          ###   ########.fr        #
+#    Updated: 2020/07/22 17:14:50 by minckim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ NAME = cub3d
 # compile option
 CC = gcc
 # FLAG = -Wall -Wextra -Werror -O3
-FLAG = -Wall -Wextra -Werror -O3 -g
-# FLAG = -O3 -g
+# FLAG = -Wall -Wextra -Werror -O3 -g
+FLAG = -O3 -g
 # FLAG = -O3
 
 #library
@@ -45,7 +45,8 @@ SCREEN_NAME = \
 	screen_face.c\
 	screen_face_util.c\
 	screen_bitmap.c\
-	save_screenshot.c
+	save_screenshot.c\
+	screen_brighten.c
 
 LINEAR_DIR = ./linear_algebra/
 LINEAR_NAME = \
@@ -62,7 +63,8 @@ LINEAR_NAME = \
 
 GEOMETRY_DIR = ./geometry/
 GEOMETRY_NAME =\
-	face.c\
+	face0.c\
+	face1.c\
 	entity.c\
 	geometry_print.c
 
@@ -90,7 +92,7 @@ SRCS_BONUS_NAME =\
 	init_entity.c\
 	init_parse_line.c\
 	init_create_entity.c\
-	player_manage.c\
+	player_move_turn.c\
 	check_collision.c\
 	jump.c\
 	crouch.c\
@@ -98,6 +100,9 @@ SRCS_BONUS_NAME =\
 	hud.c\
 	hud_lifebar.c\
 	hud_stand_crouch.c\
+	item_interaction.c\
+	player_dead.c\
+	player_door.c\
 	key_manager.c
 
 SRCS = $(addprefix $(SRCS_COMMON_DIR),$(SRCS_COMMON_NAME))\
@@ -140,12 +145,12 @@ test : $(OBJS_TEST) library
 $(NAME) : $(OBJS) library
 	$(CC) $(FLAG) -o $(NAME) $(OBJS) \
 	-lm -L. -lft -I./includes -I./usr/include -lmlx -lpthread \
-	-framework OpenGL -framework AppKit && ./$(NAME) map_bonus2.cub
+	-framework OpenGL -framework AppKit && ./$(NAME) map2.cub
 
 bonus : $(OBJS_BONUS) library
 	$(CC) $(FLAG) -o $(NAME) $(OBJS_BONUS) \
 	-lm -L. -lft -I./includes -I./usr/include -lmlx \
-	-framework OpenGL -framework AppKit && ./$(NAME) map_bonus.cub
+	-framework OpenGL -framework AppKit && ./$(NAME) map_bonus.cub --save
 
 linux: $(OBJS) library
 	$(CC) $(FLAG) -o $(NAME) $(OBJS) \
@@ -164,13 +169,18 @@ $(LIBFT) :
 	mv $(LIBFT_DIR)$(LIBFT) .
 
 clean :
-	rm -rf $(OBJS) $(LIBFT)
+	rm -rf $(SRCS_COMMON_DIR)*.o
+	rm -rf $(SRCS_BONUS_DIR)*.o
+	rm -rf $(SCREEN_DIR)*.o
+	rm -rf $(LINEAR_DIR)*.o
+	rm -rf $(BITMAP_DIR)*.o
+	rm -rf $(GEOMETRY_DIR)*.o
 	make clean -C $(LIBFT_DIR)
 
-fclean :
-	rm -rf $(OBJS) $(OBJS_BONUS) $(LIBFT) $(NAME)
-	make clean -C $(LIBFT_DIR)
-
+fclean : clean
+	make fclean -C $(LIBFT_DIR)
+	rm -rf $(NAME)
+	rm -rf $(LIBFT)
 
 re : fclean $(NAME)
 

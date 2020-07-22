@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:12:34 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/20 10:13:44 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/22 16:58:15 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include "../libft/libft.h"
 # include <stdlib.h>
 # define CAMERA_ANGLE M_PI_2
+# define MAX_RX 2560
+# define MAX_RY 1440
 
 typedef struct	s_img{
 	void		*img;
@@ -95,4 +97,13 @@ void			save_screenshot(int argc, char **argv, t_screen *s);
 */
 void			screen_bitmap(t_screen *s, t_bitmap *b, int *left_top, \
 								t_real scale);
+/*
+** ============================================================================
+** screen_brighten.c
+** ============================================================================
+*/
+void			pixel_brighten(t_pixel *p, t_real value);
+void			screen_brighten(t_screen *s, t_real value);
+void			screen_red(t_screen *s, t_real value);
+void			screen_gray(t_screen *s);
 #endif

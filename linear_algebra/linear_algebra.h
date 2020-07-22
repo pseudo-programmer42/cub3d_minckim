@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 04:36:56 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/18 18:45:26 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/20 14:06:12 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,23 @@ typedef struct	s_mat{
 */
 t_vec			vec_new(t_real a, t_real b, t_real c);
 t_vec			*vec_add(t_vec *a, t_vec *b);
+t_vec			*vec_sub(t_vec *a, t_vec *b);
+t_vec			*vec_inv(t_vec *a);
+t_real			vec_dot(t_vec *a, t_vec *b);
 /*
 ** vec1.c----------------------------------------------------------------------
 */
-t_vec			*vec_sub(t_vec *a, t_vec *b);
-t_vec			*vec_inv(t_vec *a);
+t_vec			vec_cross(t_vec *a, t_vec *b);
+t_vec			*vec_rot(t_vec *a, t_angle h, t_angle v);
+t_vec			*vec_rot_rc(t_vec *a, t_angle h, t_angle v);
 t_vec			*vec_mul(t_vec *a, t_real b);
-t_vec			*vec_div(t_vec *a, t_real b);
+t_vec			*vec_unit(t_vec *a);
 /*
 ** vec2.c----------------------------------------------------------------------
 */
-t_vec			*vec_rot(t_vec *a, t_angle h, t_angle v);
-t_vec			*vec_rot_rc(t_vec *a, t_angle h, t_angle v);
-t_vec			vec_cross(t_vec *a, t_vec *b);
-t_vec			*vec_unit(t_vec *a);
-t_real			vec_dot(t_vec *a, t_vec *b);
+t_vec			*vec_div(t_vec *a, t_real b);
+t_real			vec_distance(t_vec *a, t_vec *b);
+t_real			vec_distance2(t_vec *a, t_vec *b);
 /*
 ** mat0.c----------------------------------------------------------------------
 */
