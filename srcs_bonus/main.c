@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:54:52 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/22 18:06:48 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/22 19:18:45 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int		play_game(t_gamedata *g_data)
 		item_interaction(g_data, s, toxic_apple);
 		item_interaction(g_data, s, healing_42);
 		player_opendoor(g_data);
+		player_closedoor(g_data);
 	}
 	cub_close(g_data, g_data->keys);
 	refresh(g_data);

@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 15:21:16 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/22 18:37:46 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/22 19:28:37 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	screen_gray(t_screen *s)
 	}
 }
 
-void	screen_red(t_screen *s, t_real value)
+void	screen_rgb(t_screen *s, t_real value, int rgb)
 {
 	int				i;
 	int				j;
@@ -86,8 +86,8 @@ void	screen_red(t_screen *s, t_real value)
 		j = -1;
 		while (++j < s->ry)
 		{
-			c = (unsigned char*)(s->pixel[i][j].color) + 2;
-			*c += value;
+			c = (unsigned char*)(s->pixel[i][j].color) + rgb;
+			*c = *c * value > 255 ? 255 : *c * value;
 		}
 	}
 }

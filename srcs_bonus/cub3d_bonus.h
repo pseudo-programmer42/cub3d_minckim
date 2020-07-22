@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:49:13 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/22 16:58:09 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/22 19:31:43 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@
 # define ANGLE_UNIT 0.05235987756
 # define MOVE_WALK 300
 # define MOVE_RUN 1000
-# define JUMP_HEIGHT 1000
+# define JUMP_HEIGHT 2000
 # define JUMP_DUL 1
 # define TIME_SEGMENT 0.001
 # define LIFE_MAX 100
@@ -204,4 +204,5 @@ void			dead(t_player *p, t_screen *s);
 */
 int				check_collision_door(t_gamedata *g_data, t_vec *m);
 void			player_opendoor(t_gamedata *g);
+void			player_closedoor(t_gamedata *g);
 #endif

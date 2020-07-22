@@ -1,14 +1,14 @@
 R 900 600
 
-S ./super.bmp
-NO ./super.bmp
-SO ./super.bmp
-WE ./super.bmp
-EA ./super.bmp
+S ./texture/sprite.bmp
+NO ./texture/east.bmp
+SO ./texture/super.bmp
+WE ./texture/shuttle.bmp
+EA ./texture/cloud.bmp
 
 
-F 220,100,0
-C 225,30,0
+F 220,150,0
+C 225,30,20
 
 
 

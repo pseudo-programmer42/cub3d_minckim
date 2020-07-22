@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/21 16:04:51 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/22 18:10:50 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/22 19:20:25 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,35 @@ void	player_opendoor(t_gamedata *g)
 	if (is_pressed(KEY_F, g->keys) \
 	&& (double)(t[1] - t[0]) / CLOCKS_PER_SEC > TIME_SEGMENT)
 		entity_move(curr->content, &v);
+	tmp->origin.z = tmp->origin.z > CEILLING_HEIGHT ? \
+	CEILLING_HEIGHT : tmp->origin.z;
+}
+
+void	player_closedoor(t_gamedata *g)
+{
+	static clock_t	t[2];
+	t_list			*curr;
+	t_vec			v;
+	t_entity		*tmp;
+
+	curr = g->lst_door;
+	while (curr)
+	{
+		tmp = curr->content;
+		if (tmp->origin.x - WALL_WIDTH < g->player.origin.x \
+		&& g->player.origin.x < tmp->origin.x + WALL_WIDTH \
+		&& tmp->origin.y - WALL_WIDTH < g->player.origin.y \
+		&& g->player.origin.y < tmp->origin.y + WALL_WIDTH)
+			break ;
+		curr = curr->next;
+	}
+	if (!curr)
+		return ;
+	t[1] = clock();
+	v = vec_new(0, 0, -MOVE_WALK);
+	if (is_pressed(KEY_G, g->keys) \
+	&& (double)(t[1] - t[0]) / CLOCKS_PER_SEC > TIME_SEGMENT
+	&& tmp->origin.z >= 0)
+		entity_move(curr->content, &v);
+	tmp->origin.z = tmp->origin.z < 0 ? 0 : tmp->origin.z;
 }

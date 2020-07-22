@@ -6,7 +6,7 @@
 #    By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/29 16:58:52 by minckim           #+#    #+#              #
-#    Updated: 2020/07/22 17:14:50 by minckim          ###   ########.fr        #
+#    Updated: 2020/07/22 20:35:41 by minckim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -135,12 +135,6 @@ all : $(NAME)
 
 norm :
 	norminette $(SRCS) $(HEADERS) $(addprefix $(SRCS_BONUS_DIR),$(SRCS_BONUS_NAME))
-
-test : $(OBJS_TEST) library
-	$(CC) $(FLAG) -o $(NAME) $(OBJS_TEST) \
-	-lm -L. -lft -I./includes -I./usr/include -lmlx \
-	-framework OpenGL -framework AppKit && ./$(NAME) map.cub
-
 
 $(NAME) : $(OBJS) library
 	$(CC) $(FLAG) -o $(NAME) $(OBJS) \

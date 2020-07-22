@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 22:42:34 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/22 18:45:59 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/22 18:51:45 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	init_player(t_gamedata *g_data)
 	g_data->player.crouch = 0;
 	g_data->player.life = 100;
 	if (g_data->player.origin.x == 0)
-		exit_message("%sPlayer start point missing.","");
+		exit_message("%sPlayer start point missing.", "");
 }
 
 void	init_entity(t_gamedata *g, char **map_arr)

@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:53:55 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/21 16:05:49 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/22 19:17:35 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@
 # define KEY_D 2
 # define KEY_C 8
 # define KEY_F 3
+# define KEY_G 5
 # define KEY_SHF 257
 #endif

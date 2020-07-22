@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 14:08:56 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/20 20:23:04 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/22 19:29:12 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	del_lst_item(t_list *prev, t_list *curr, t_list **head)
 	free(curr);
 }
 
-int		toxic_apple(t_gamedata *g, t_screen *s, t_entity *item)
+int		healing_42(t_gamedata *g, t_screen *s, t_entity *item)
 {
 	t_player *p;
 
@@ -30,10 +30,11 @@ int		toxic_apple(t_gamedata *g, t_screen *s, t_entity *item)
 	|| vec_distance2(&item->origin, &p->origin) > WALL_WIDTH * WALL_WIDTH / 4)
 		return (0);
 	p->life = p->life + 20 > 100 ? 100 : p->life + 20;
+	screen_rgb(s, 100, 1);
 	return (1);
 }
 
-int		healing_42(t_gamedata *g, t_screen *s, t_entity *item)
+int		toxic_apple(t_gamedata *g, t_screen *s, t_entity *item)
 {
 	t_player *p;
 
@@ -42,6 +43,7 @@ int		healing_42(t_gamedata *g, t_screen *s, t_entity *item)
 	&& vec_distance2(&item->origin, &p->origin) < WALL_WIDTH * WALL_WIDTH / 4)
 	{
 		p->life = p->life - 20 < 0 ? 0 : p->life - 20;
+		screen_rgb(s, 100, 2);
 		return (1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:12:34 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/22 16:58:15 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/22 20:31:43 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void			save_screenshot(int argc, char **argv, t_screen *s);
 ** ============================================================================
 */
 void			screen_bitmap(t_screen *s, t_bitmap *b, int *left_top, \
-								t_real scale);
+								double scale);
 /*
 ** ============================================================================
 ** screen_brighten.c
@@ -104,6 +104,6 @@ void			screen_bitmap(t_screen *s, t_bitmap *b, int *left_top, \
 */
 void			pixel_brighten(t_pixel *p, t_real value);
 void			screen_brighten(t_screen *s, t_real value);
-void			screen_red(t_screen *s, t_real value);
+void			screen_rgb(t_screen *s, t_real value, int rgb);
 void			screen_gray(t_screen *s);
 #endif

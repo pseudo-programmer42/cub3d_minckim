@@ -6,13 +6,13 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/19 17:28:34 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/20 13:39:28 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/22 20:31:23 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "screen.h"
 
-void	screen_bitmap(t_screen *s, t_bitmap *b, int *left_top, t_real scale)
+void	screen_bitmap(t_screen *s, t_bitmap *b, int *left_top, double scale)
 {
 	int		i;
 	int		j;

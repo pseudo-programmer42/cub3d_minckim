@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 04:24:21 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/14 00:03:38 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/22 20:25:07 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int			parse_bitmap_size_info(char *buffer, t_bitmap *img)
 		img->byte_per_pixel = ((*(int*)(&buffer[14])) & 0xffff) / 8;
 		img->size = *(int*)(&buffer[20]);
 	}
-	img->byte_per_line = 3 * img->width + img->width % 4;
+	img->byte_per_line = img->byte_per_pixel * img->width + img->width % 4;
 	return (0);
 }
 
