@@ -3,26 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   init_screen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: minckim <minckim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 23:50:15 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/22 18:06:53 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/28 21:10:56 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "screen.h"
+#include <CoreGraphics/CGDisplayConfiguration.h>
 #define BASIC_COLOR 0
+
+void		get_screen_resolution(int *mx_x, int *mx_y)
+{
+	CGRect	main_monitor;
+
+	main_monitor = CGDisplayBounds(CGMainDisplayID());
+	*mx_x = (int)CGRectGetWidth(main_monitor);
+	*mx_y = (int)CGRectGetHeight(main_monitor);
+	ft_printf(" - Max screen size: %4d %4d\n", *mx_x, *mx_y);
+}
 
 t_screen	init_screen(int rx, int ry, t_angle angle)
 {
 	t_screen	screen;
 	t_img		*img;
+	int			resolution_mx_x;
+	int			resolution_mx_y;
 
+	get_screen_resolution(&resolution_mx_x, &resolution_mx_y);
 	screen.origin = vec_new(0, 0, 0);
 	screen.h = 0;
 	screen.v = 0;
-	screen.rx = rx < MAX_RX ? rx : MAX_RX;
-	screen.ry = ry < MAX_RY ? ry : MAX_RY;
+	screen.rx = rx < resolution_mx_x ? rx : resolution_mx_x;
+	screen.ry = ry < resolution_mx_y ? ry : resolution_mx_y;
 	screen.mlx = mlx_init();
 	screen.win = mlx_new_window(screen.mlx, rx, ry, "cub3d_minckim");
 	img = &(screen.img);
@@ -34,6 +48,7 @@ t_screen	init_screen(int rx, int ry, t_angle angle)
 	screen.cos_cam = cos(angle / 2);
 	screen.pixel = pixel_init(&screen);
 	screen.odd = 0;
+	screen.gi = vec_new(1 / 1.8, 1 / 1.8, -1 / 1.8);
 	return (screen);
 }
 

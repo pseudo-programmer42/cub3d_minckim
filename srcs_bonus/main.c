@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: minckim <minckim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:54:52 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/22 19:18:45 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/28 21:28:33 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,10 @@ int		play_game(t_gamedata *g_data)
 		player_opendoor(g_data);
 		player_closedoor(g_data);
 	}
+	if (is_pressed(KEY_SHF, g_data->keys))
+		p->origin.z += 100;
+	if (is_pressed(KEY_X, g_data->keys))
+		p->origin.z -= 100;
 	cub_close(g_data, g_data->keys);
 	refresh(g_data);
 	return (1);
@@ -81,6 +85,10 @@ int		main(int argc, char **argv)
 
 	ft_memset(&g_data, 0, sizeof(g_data));
 	init_game_data(argv[1], &g_data);
+	g_data.pikachu = stl_to_geometry("texture/pika2.stl");
+	g_data.pikachu.origin.x = 12000;
+	g_data.pikachu.origin.y = 9000;
+	ft_lstadd_back(&g_data.lst_ent, ft_lstnew(&g_data.pikachu));
 	s = &g_data.screen;
 	refresh(&g_data);
 	refresh(&g_data);
@@ -89,6 +97,6 @@ int		main(int argc, char **argv)
 	mlx_hook(s->win, 3, 2, key_release_manager, g_data.keys);
 	mlx_loop_hook(s->mlx, play_game, &g_data);
 	mlx_hook(s->win, 6, 1L << 2, mouse_motion, &g_data);
-	mlx_hook(s->win, 17, 1L << 5, cub_close, &g_data);
+	mlx_hook(s->win, 17, 1L << 5, cub_close_mouse, 0);
 	mlx_loop(s->mlx);
 }

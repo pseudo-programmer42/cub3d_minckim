@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen_face.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: minckim <minckim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 18:03:07 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/22 17:24:04 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/28 21:38:39 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 t_real	set_distance(t_face *f)
 {
 	return (equation_vector(&f->u, &f->v, &f->n, &f->a).z);
+}
+
+void	screen_color(t_pixel *p, t_face *f)
+{
+	*(p->color) = (f->color);
+	pixel_brighten(p, f->shade);
 }
 
 void	pixel_face(t_pixel *pixel, t_face *f)
@@ -41,7 +47,7 @@ void	pixel_face(t_pixel *pixel, t_face *f)
 		pixel_brighten(pixel, 1 / a.x * 15000 > 1 ? 1 : 1 / a.x * 15000);
 	}
 	else
-		*(pixel->color) = (f->color);
+		screen_color(pixel, f);
 	pixel->distance = a.x;
 }
 

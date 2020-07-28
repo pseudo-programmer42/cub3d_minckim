@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: minckim <minckim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:12:34 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/22 20:31:43 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/28 20:10:29 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct	s_screen{
 	t_angle		tan_camera_angle_2;
 	t_real		distance;
 	t_angle		cos_cam;
+	t_vec		gi;
 }				t_screen;
 
 /*
@@ -106,4 +107,10 @@ void			pixel_brighten(t_pixel *p, t_real value);
 void			screen_brighten(t_screen *s, t_real value);
 void			screen_rgb(t_screen *s, t_real value, int rgb);
 void			screen_gray(t_screen *s);
+/*
+** ============================================================================
+** screen_exit.c
+** ============================================================================
+*/
+int				cub_close_mouse(void);
 #endif

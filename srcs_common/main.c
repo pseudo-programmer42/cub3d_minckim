@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: minckim <minckim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:54:52 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/18 18:30:50 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/28 19:20:03 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		cub_close(t_gamedata *g_data, int key)
 	if (key != KEY_ESC)
 		return (0);
 	key = 0;
-	g_data++;
+	g_data = g_data;
 	ft_printf("bye\n");
 	exit(0);
 }
@@ -78,6 +78,6 @@ int		main(int argc, char **argv)
 	mlx_loop_hook(s->mlx, refresh, &g_data);
 	mlx_hook(s->win, 2, 1, cub_key_hook, &g_data);
 	mlx_hook(s->win, 2, 1, cub_key_hook, &g_data);
-	mlx_hook(s->win, 17, 1L << 5, cub_close, &g_data);
+	mlx_hook(s->win, 17, 1L << 5, cub_close_mouse, &g_data);
 	mlx_loop(s->mlx);
 }

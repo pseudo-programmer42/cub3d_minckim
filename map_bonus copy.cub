@@ -1,0 +1,40 @@
+R 800 500
+NO ./texture/win7.bmp
+SO ./texture/win10.bmp
+WE ./texture/win98.bmp
+EA ./texture/winxp.bmp
+F ./texture/super.bmp
+C ./texture/cloud.bmp
+B0 ./texture/42_0.bmp
+B1 ./texture/42_1.bmp
+B2 ./texture/42_2.bmp
+C0 ./texture/android.bmp
+C1 ./texture/android.bmp
+C2 ./texture/android.bmp
+A0 ./texture/ap_0.bmp
+A1 ./texture/ap_1.bmp
+A2 ./texture/ap_2.bmp
+D ./texture/winxp.bmp
+E ./texture/gates.bmp
+G ./texture/lifebar.bmp
+H ./texture/crouch.bmp
+I ./texture/stand.bmp
+
+
+
+1111111111111111111111
+1000000000003322000001
+1004444000003322000001
+1000000000003322000001
+1000000000003322000001
+1000000000003322000001
+1000000000003322000001
+1000000000003322000001
+1161161111111111515111
+100000N000100000000001
+1000002000100000000001
+1000002000000000000001
+1000002000000000000001
+1000002000100000000001
+1000002000100000000001
+1111111111111111111111

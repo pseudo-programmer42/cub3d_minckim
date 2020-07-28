@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+         #
+#    By: minckim <minckim@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/29 16:58:52 by minckim           #+#    #+#              #
-#    Updated: 2020/07/22 20:35:41 by minckim          ###   ########.fr        #
+#    Updated: 2020/07/28 18:29:53 by minckim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,8 @@ SCREEN_NAME = \
 	screen_face_util.c\
 	screen_bitmap.c\
 	save_screenshot.c\
-	screen_brighten.c
+	screen_brighten.c\
+	screen_exit.c
 
 LINEAR_DIR = ./linear_algebra/
 LINEAR_NAME = \
@@ -66,7 +67,8 @@ GEOMETRY_NAME =\
 	face0.c\
 	face1.c\
 	entity.c\
-	geometry_print.c
+	geometry_print.c\
+	stl_to_geometry.c
 
 SRCS_COMMON_DIR = ./srcs_common/
 SRCS_COMMON_NAME =\
@@ -144,7 +146,7 @@ $(NAME) : $(OBJS) library
 bonus : $(OBJS_BONUS) library
 	$(CC) $(FLAG) -o $(NAME) $(OBJS_BONUS) \
 	-lm -L. -lft -I./includes -I./usr/include -lmlx \
-	-framework OpenGL -framework AppKit && ./$(NAME) map_bonus.cub --save
+	-framework OpenGL -framework AppKit && ./$(NAME) map_bonus.cub
 
 linux: $(OBJS) library
 	$(CC) $(FLAG) -o $(NAME) $(OBJS) \

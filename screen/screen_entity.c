@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen_entity.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: minckim <minckim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:15:49 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/22 18:05:17 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/28 21:33:34 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int		screen_entity(t_screen *s, t_entity *e)
 		mat_vec(&mat_r, &(tmp.u));
 		mat_vec(&mat_r, &(tmp.v));
 		mat_vec(&mat_r, &(tmp.n));
+		tmp.shade = vec_dot(&s->gi, &tmp.n);
+		tmp.shade = tmp.shade > 0 ? tmp.shade : -tmp.shade;
 		face_move(&tmp, &(e->origin));
 		visible += screen_face(s, &tmp);
 	}

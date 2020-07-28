@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: minckim <minckim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:49:13 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/22 19:31:43 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/28 18:55:53 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct	s_gamedata{
 	t_entity	door;
 	t_entity	secret_door;
 	t_entity	non;
+	t_entity	pikachu;
 	t_entity	**entity;
 	t_list		*lst_ent;
 	t_list		*lst_item;

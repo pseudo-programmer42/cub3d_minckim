@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   geometry.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: minckim <minckim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:07:08 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/21 17:32:04 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/28 21:40:47 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct	s_face{
 	int			color;
 	void		*img;
 	int			side;
+	float		shade;
 	t_vec		a;
 	t_vec		b;
 	t_vec		c;
@@ -78,4 +79,10 @@ t_entity		entity_copy(t_entity *e, t_vec *v);
 ** ============================================================================
 */
 void			face_print(t_face *f);
+/*
+** ============================================================================
+** stl_to_geometry.c
+** ============================================================================
+*/
+t_entity		stl_to_geometry(char *path);
 #endif

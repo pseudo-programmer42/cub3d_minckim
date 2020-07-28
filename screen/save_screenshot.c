@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_screenshot.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: minckim <minckim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 01:04:02 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/14 03:43:08 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/27 19:39:04 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,5 @@ void	save_screenshot(int argc, char **argv, t_screen *s)
 	while (--j >= 0)
 		write(fd, s->img.addr + s->img.line_length * j, s->img.line_length);
 	close(fd);
+	exit(0);
 }
