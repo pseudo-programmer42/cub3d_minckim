@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_manage.c                                    :+:      :+:    :+:   */
+/*   player_move_turn.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: minckim <minckim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 01:13:40 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/19 12:05:28 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/30 16:31:03 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_angle	angle_combination(long long *keys)
 {
 	t_angle	h;
 
+	h = 0;
 	if (is_pressed(KEY_A, keys) && is_pressed(KEY_W, keys))
 		h = M_PI_4;
 	else if (is_pressed(KEY_D, keys) && is_pressed(KEY_W, keys))

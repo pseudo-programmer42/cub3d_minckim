@@ -6,7 +6,7 @@
 #    By: minckim <minckim@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/29 16:58:52 by minckim           #+#    #+#              #
-#    Updated: 2020/07/28 18:29:53 by minckim          ###   ########.fr        #
+#    Updated: 2020/07/30 17:09:38 by minckim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,9 @@ NAME = cub3d
 
 # compile option
 CC = gcc
-# FLAG = -Wall -Wextra -Werror -O3
+FLAG = -Wall -Wextra -Werror -O3
 # FLAG = -Wall -Wextra -Werror -O3 -g
-FLAG = -O3 -g
+#FLAG = -O3 -g
 # FLAG = -O3
 
 #library
@@ -153,7 +153,7 @@ linux: $(OBJS) library
 	-lm -L. -lft \
 	&& ./$(NAME) map.cub
 
-$(OBJS):%.o : %.c
+%.o : %.c
 	$(CC) $(FLAG) -c $*.c -o $@
 
 lib : library

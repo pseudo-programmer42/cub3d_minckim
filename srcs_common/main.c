@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:54:52 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/28 19:20:03 by minckim          ###   ########.fr       */
+/*   Updated: 2020/07/30 16:17:43 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		cub_close(t_gamedata *g_data, int key)
 	if (key != KEY_ESC)
 		return (0);
 	key = 0;
-	g_data = g_data;
+	(void)g_data;
 	ft_printf("bye\n");
 	exit(0);
 }
