@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 00:49:13 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/28 18:55:53 by minckim          ###   ########.fr       */
+/*   Updated: 2020/08/01 16:24:16 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 # include <stdlib.h>
 # include <time.h>
 # include <pthread.h>
-# include "../screen/screen.h"
+# include "../screen_bonus/screen_bonus.h"
 # include "../libft/libft.h"
-# include "key.h"
+# include "key_bonus.h"
 # define TYPE_FLOOR 0
 # define TYPE_WALL 1
 # define TYPE_SPRITE_AP 2

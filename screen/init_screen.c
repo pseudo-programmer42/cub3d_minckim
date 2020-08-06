@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 23:50:15 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/28 21:10:56 by minckim          ###   ########.fr       */
+/*   Updated: 2020/08/03 20:42:39 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,30 +26,30 @@ void		get_screen_resolution(int *mx_x, int *mx_y)
 
 t_screen	init_screen(int rx, int ry, t_angle angle)
 {
-	t_screen	screen;
+	t_screen	s;
 	t_img		*img;
 	int			resolution_mx_x;
 	int			resolution_mx_y;
 
 	get_screen_resolution(&resolution_mx_x, &resolution_mx_y);
-	screen.origin = vec_new(0, 0, 0);
-	screen.h = 0;
-	screen.v = 0;
-	screen.rx = rx < resolution_mx_x ? rx : resolution_mx_x;
-	screen.ry = ry < resolution_mx_y ? ry : resolution_mx_y;
-	screen.mlx = mlx_init();
-	screen.win = mlx_new_window(screen.mlx, rx, ry, "cub3d_minckim");
-	img = &(screen.img);
-	img->img = mlx_new_image(screen.mlx, rx, ry);
+	s.origin = vec_new(0, 0, 0);
+	s.h = 0;
+	s.v = 0;
+	s.rx = rx < resolution_mx_x ? rx : resolution_mx_x;
+	s.ry = ry < resolution_mx_y ? ry : resolution_mx_y;
+	s.mlx = mlx_init();
+	s.win = mlx_new_window(s.mlx, s.rx, s.ry, "cub3d_minckim");
+	img = &(s.img);
+	img->img = mlx_new_image(s.mlx, s.rx, s.ry);
 	img->addr = mlx_get_data_addr(img->img, &(img->bits_per_pixel), \
 		&(img->line_length), &(img->endian));
-	screen.tan_camera_angle_2 = tan(angle / 2) * 2;
-	screen.distance = screen.rx / screen.tan_camera_angle_2;
-	screen.cos_cam = cos(angle / 2);
-	screen.pixel = pixel_init(&screen);
-	screen.odd = 0;
-	screen.gi = vec_new(1 / 1.8, 1 / 1.8, -1 / 1.8);
-	return (screen);
+	s.tan_camera_angle_2 = tan(angle / 2) * 2;
+	s.distance = s.rx / s.tan_camera_angle_2;
+	s.cos_cam = cos(angle / 2);
+	s.pixel = pixel_init(&s);
+	s.odd = 0;
+	s.gi = vec_new(1 / 1.8, 1 / 1.8, -1 / 1.8);
+	return (s);
 }
 
 t_pixel		**pixel_init(t_screen *s)

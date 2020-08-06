@@ -6,7 +6,7 @@
 /*   By: minckim <minckim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 18:03:07 by minckim           #+#    #+#             */
-/*   Updated: 2020/07/28 21:38:39 by minckim          ###   ########.fr       */
+/*   Updated: 2020/08/01 16:42:03 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_real	set_distance(t_face *f)
 void	screen_color(t_pixel *p, t_face *f)
 {
 	*(p->color) = (f->color);
-	pixel_brighten(p, f->shade);
 }
 
 void	pixel_face(t_pixel *pixel, t_face *f)
@@ -44,7 +43,6 @@ void	pixel_face(t_pixel *pixel, t_face *f)
 		if (color == 0x00ffffff)
 			return ;
 		*(pixel->color) = color;
-		pixel_brighten(pixel, 1 / a.x * 15000 > 1 ? 1 : 1 / a.x * 15000);
 	}
 	else
 		screen_color(pixel, f);

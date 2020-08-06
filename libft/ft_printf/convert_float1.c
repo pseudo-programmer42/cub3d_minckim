@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_float1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: minckim <minckim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/12 01:18:46 by minckim           #+#    #+#             */
-/*   Updated: 2020/06/24 14:14:46 by root             ###   ########.fr       */
+/*   Updated: 2020/08/01 16:53:39 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 char	*float_str(double f)
 {
 	size_t	*t;
-	// int		sign;
 	int		exp;
 	size_t	mts;
 	t_big	num;
 
 	t = (size_t*)&f;
-	// sign = *t >> 63;
 	exp = ((*t & 0x7ff0000000000000L) >> 52) - ((1 << 10) - 1);
 	mts = (*t & 0x000fffffffffffffL) + (1L << 52);
 	num = mts_big(mts, exp);

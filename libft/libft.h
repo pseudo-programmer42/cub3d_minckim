@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: minckim <minckim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 19:50:23 by minckim           #+#    #+#             */
-/*   Updated: 2020/06/24 16:06:10 by root             ###   ########.fr       */
+/*   Updated: 2020/08/01 16:51:46 by minckim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <stddef.h>
 # include "get_next_line/get_next_line.h"
 # include "ft_printf/ft_printf.h"
+
 typedef struct		s_list
 {
 	void			*content;
