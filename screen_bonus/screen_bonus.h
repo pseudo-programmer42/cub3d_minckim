@@ -12,7 +12,7 @@
 
 #ifndef SCREEN_BONUS_H
 # define SCREEN_BONUS_H
-# include <mlx.h>
+# include "../mlx/mlx.h"
 # include "../bitmap_bonus/bitmap_bonus.h"
 # include "../linear_algebra_bonus/linear_algebra_bonus.h"
 # include "../geometry_bonus/geometry_bonus.h"

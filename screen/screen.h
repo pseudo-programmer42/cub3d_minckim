@@ -12,7 +12,7 @@
 
 #ifndef SCREEN_H
 # define SCREEN_H
-# include <mlx.h>
+# include "../mlx/mlx.h"
 # include "../bitmap/bitmap.h"
 # include "../linear_algebra/linear_algebra.h"
 # include "../geometry/geometry.h"

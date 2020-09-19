@@ -30,6 +30,9 @@ LIBGNL = libgnl.a
 LIBFTPRINTF_DIR = $(LIBFT_DIR)ft_printf/
 LIBFTPRINTF = libftprintf.a
 
+OPENGL_DIR = ./mlx/
+OPENGL = libmlx.a
+
 #source files
 SRCS_TEST = main_ex.c
 OBJS_TEST = $(SRCS_TEST:.c=.o)
@@ -177,12 +180,12 @@ all : $(NAME)
 norm :
 	norminette $(MANDATORY) $(HEADERS) $(BONUS) libft/*.c libft/*.h libft/*/*.c libft/*/*.h
 
-$(NAME) : $(OBJS) library
+$(NAME) : library $(OBJS)
 	$(CC) $(FLAG) -o $(NAME) $(OBJS) \
 	-lm -L. -lft -I./includes -I./usr/include -lmlx -lpthread \
 	-framework OpenGL -framework AppKit
 
-bonus : $(OBJS_BONUS) library
+bonus : library $(OBJS_BONUS)
 	$(CC) $(FLAG) -o $(NAME) $(OBJS_BONUS) \
 	-lm -L. -lft -I./includes -I./usr/include -lmlx \
 	-framework OpenGL -framework AppKit
@@ -192,7 +195,7 @@ bonus : $(OBJS_BONUS) library
 
 lib : library
 
-library : $(LIBFT)
+library : $(LIBFT) $(OPENGL)
 
 $(LIBFT) :
 	make -C $(LIBFT_DIR)
@@ -210,11 +213,13 @@ clean :
 	rm -rf $(GEOMETRY_DIR)*.o
 	rm -rf $(GEOMETRY_BONUS_DIR)*.o
 	make clean -C $(LIBFT_DIR)
+	make clean -C $(OPENGL_DIR)
 
 fclean : clean
 	make fclean -C $(LIBFT_DIR)
 	rm -rf $(NAME)
 	rm -rf $(LIBFT)
+	rm -rf $(OPENGL)
 
 re : fclean $(NAME)
 
@@ -223,16 +228,15 @@ reb : fclean bonus
 # MMS_DIR = ./minilibx_mms_20200219/
 # MMS = libmlx.dylib
 
-# OPENGL_DIR = ./minilibx_opengl_20191021/
-# OPENGL = libmlx.a
+
 
 # mms :
 # 	make -C $(MMS_DIR)
 # 	mv $(MMS_DIR)$(MMS) ./$(MMS)
 
-# opengl :
-# 	make -C $(OPENGL_DIR)
-# 	mv $(OPENGL_DIR)$(OPENGL) ./$(OPENGL)
+$(OPENGL) :
+	make -C $(OPENGL_DIR)
+	mv $(OPENGL_DIR)$(OPENGL) ./$(OPENGL)
 
 # clean :
 # 	rm -rf $(OBJS) $(LIBFT) $(MMS) $(OPENGL)
