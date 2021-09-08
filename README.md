@@ -1,4 +1,9 @@
 # cub3d_minckim
+
+https://user-images.githubusercontent.com/63211297/132561023-9629172c-8f94-4683-889a-1a7176d7f49c.mp4
+
+
+
 ## 점수 | Score
 - 115/100
 ### 보너스 | Bonus
